@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>VueDetail</title>
-    <url>/2020/08/26/VueDetail/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>VueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetail</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>first blog</title>
     <url>/2020/08/26/first-blog/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>##第一章<br>first blog<br>##第二章<br>first blog<br>##第三章<br>first blog<br>##第四章<br>first blog </p>
@@ -22,6 +10,68 @@
       </categories>
       <tags>
         <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringIoc容器设计及实现</title>
+    <url>/2020/08/31/SpringIoc%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
+            <p>spring 的核心理念是Ioc(控制反转)和AOP(面向切面编程)</p>
+          </div>
+
+<h3 id="一、springIoc容器的设计"><a href="#一、springIoc容器的设计" class="headerlink" title="一、springIoc容器的设计"></a>一、springIoc容器的设计</h3><h4 id="1-容器的设计"><a href="#1-容器的设计" class="headerlink" title="1.容器的设计"></a>1.容器的设计</h4><div class="note primary no-icon">
+            <p>（1）BeanFactory<br>​（2）ApplicationContext(BeanFactory的子接口)</p>
+          </div>
+
+<p>​    </p>
+<h4 id="2-容器的初始化和依赖注入"><a href="#2-容器的初始化和依赖注入" class="headerlink" title="2.容器的初始化和依赖注入"></a>2.容器的初始化和依赖注入</h4><p>Bean定义到IoC容器中3种方式</p>
+<div class="note primary no-icon">
+            <p>​    （1）Resourse定位    资源定位，常使用注解方式<br>​    （2）BeanDefinition载入<br>​    （3）BeanDefinition注册</p>
+          </div>
+
+<h4 id="3-SpringBean的周期"><a href="#3-SpringBean的周期" class="headerlink" title="3.SpringBean的周期"></a>3.SpringBean的周期</h4><p>从容器初始化到销毁的过程</p>
+<h3 id="二、装配SpringBean"><a href="#二、装配SpringBean" class="headerlink" title="二、装配SpringBean"></a>二、装配SpringBean</h3><h4 id="1-3种装备方式"><a href="#1-3种装备方式" class="headerlink" title="1.    3种装备方式"></a>1.    3种装备方式</h4><div class="note primary no-icon">
+            <p>​    （1）构造器注入<br>​    （2）setter注入（主流方式）<br>​    （3）接口注入</p>
+          </div>
+
+
+
+
+
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>spring</category>
+      </categories>
+      <tags>
+        <tag>spring</tag>
+        <tag>SpringIoc</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读书笔记</title>
+    <url>/2020/08/30/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
+            <p>明朝那些事儿</p>
+          </div>]]></content>
+      <categories>
+        <category>book</category>
+      </categories>
+      <tags>
+        <tag>book</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VueDetail</title>
+    <url>/2020/08/26/VueDetail/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>VueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetailVueDetail</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -41,18 +91,5 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>读书笔记</title>
-    <url>/2020/08/30/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
-            <p>明朝那些事儿</p>
-          </div>]]></content>
-      <categories>
-        <category>book</category>
-      </categories>
-      <tags>
-        <tag>book</tag>
-      </tags>
   </entry>
 </search>
