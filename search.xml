@@ -19,6 +19,178 @@
 ]]></content>
   </entry>
   <entry>
+    <title>git学习记录</title>
+    <url>/2020/09/07/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-git简介"><a href="#1-git简介" class="headerlink" title="1.git简介"></a>1.git简介</h2><p>分布式版本控制系统  </p>
+<h2 id="2-在-Git环境搭建（windows）"><a href="#2-在-Git环境搭建（windows）" class="headerlink" title="2.在  Git环境搭建（windows）"></a>2.在  Git环境搭建（windows）</h2><p>安装完成后配置自己的信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;email@example.com &quot;</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="（1）创建版本库"><a href="#（1）创建版本库" class="headerlink" title="（1）创建版本库"></a>（1）创建版本库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ <span class="built_in">cd</span> learngit</span><br><span class="line">$ <span class="built_in">pwd</span>  </span><br></pre></td></tr></table></figure>
+
+<p>通过 git init 命令把这个目录变成 Git 可以管理的仓库：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/michael/learngit/.git/  </span><br></pre></td></tr></table></figure>
+
+<p>注意编译软件的选择</p>
+<h3 id="（2）把文件添加到版本库"><a href="#（2）把文件添加到版本库" class="headerlink" title="（2）把文件添加到版本库"></a>（2）把文件添加到版本库</h3><p>第一步，用命令 git add 告诉 Git，把文件添加到仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt  </span><br></pre></td></tr></table></figure>
+
+<p>第二步，用命令 git commit 告诉 Git，把文件提交到仓库：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;wrote a readme file&quot;</span></span><br><span class="line">[master (root-commit) cb926e7] wrote a readme file</span><br><span class="line">1 file changed, 2 insertions(+)</span><br><span class="line">create mode 100644 readme.txt  </span><br></pre></td></tr></table></figure>
+
+<h2 id="3-版本控制"><a href="#3-版本控制" class="headerlink" title="3.版本控制"></a>3.版本控制</h2><h3 id="（1）仓库状态"><a href="#（1）仓库状态" class="headerlink" title="（1）仓库状态"></a>（1）仓库状态</h3><p> git status查看当前仓库里的文件状态:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">\<span class="comment"># On branch master</span></span><br><span class="line">\<span class="comment"># Changes not staged for commit:</span></span><br><span class="line">\<span class="comment"># (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span></span><br><span class="line">\<span class="comment"># (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span></span><br><span class="line">\<span class="comment">#</span></span><br><span class="line">\<span class="comment"># modified: readme.txt</span></span><br><span class="line">\<span class="comment">#</span></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)  </span><br></pre></td></tr></table></figure>
+
+<p>查看修改了哪些内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff 文件名</span><br></pre></td></tr></table></figure>
+
+<p>查看git日志</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span>  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）版本回退"><a href="#（2）版本回退" class="headerlink" title="（2）版本回退"></a>（2）版本回退</h3><p>在 Git 中，用 HEAD 表示当前版本，也就是最新的提交 3628164…882e1e0 （注意我的提交 ID 和你的肯定不一样），上一个版本就是 HEAD^ ，上上一个版本就是 HEAD^^ ，当然往上 100 个版本写 100 个 ^ 比较容易数不过来，所以写成 HEAD~100 。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at ea34578 add distributed  </span><br></pre></td></tr></table></figure>
+
+<p>Git 提供了一个命令 git reflog 用来记录你的每一次命令：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">ea34578 HEAD@&#123;0&#125;: reset: moving to HEAD^</span><br><span class="line">3628164 HEAD@&#123;1&#125;: commit: append GPL</span><br><span class="line">ea34578 HEAD@&#123;2&#125;: commit: add distributed</span><br><span class="line">cb926e7 HEAD@&#123;3&#125;: commit (initial): wrote a readme file  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）工作区和暂存区"><a href="#（3）工作区和暂存区" class="headerlink" title="（3）工作区和暂存区"></a>（3）工作区和暂存区</h3><p>我们把文件往 Git 版本库里添加的时候，是分两步执行的：  </p>
+<p>第一步是用 git add 把文件添加进去，实际上就是把文件修改添加到暂存区；<br>第二步是用 git commit 提交更改，实际上就是把暂存区的所有内容提交到当前分支。  </p>
+<p><img src= "/img/loading.gif" data-lazy-src="/img/article/git_workspace_image.png" alt="avatar"></p>
+<p>git checkout – file 可以丢弃工作区的修改：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -- readme.txt  </span><br></pre></td></tr></table></figure>
+
+<p>git checkout – file 命令中的–很重要，没有–，就变成了“创建一个新分支”的命令 。 </p>
+<p>git reset HEAD file 可以把暂存区的修改撤销掉（unstage），重新放回工作区：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset HEAD readme.txt  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）删除文件"><a href="#（4）删除文件" class="headerlink" title="（4）删除文件"></a>（4）删除文件</h3><p>确实要从版本库中删除该文件，那就用命令 git rm 删掉，并且 git commit ：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rm test.txt</span><br><span class="line">rm <span class="string">&#x27;test.txt&#x27;</span></span><br><span class="line">$ git commit -m <span class="string">&quot;remove test.txt&quot;</span></span><br><span class="line">[master d17efd8] remove test.txt</span><br><span class="line">1 file changed, 1 deletion(-)</span><br><span class="line">delete mode 100644 test.txt  </span><br></pre></td></tr></table></figure>
+
+<p>如果删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本 ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -- test.txt  </span><br></pre></td></tr></table></figure>
+
+<h2 id="4-分支管理"><a href="#4-分支管理" class="headerlink" title="4.分支管理"></a>4.分支管理</h2><h3 id="（1）创建与合并分支"><a href="#（1）创建与合并分支" class="headerlink" title="（1）创建与合并分支"></a>（1）创建与合并分支</h3><p>创建 dev 分支，然后切换到 dev 分支：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -b dev</span><br><span class="line">Switched to a new branch <span class="string">&#x27;dev&#x27;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>git checkout 命令加上 -b 参数表示创建并切换，相当于以下两条命令：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch dev</span><br><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>然后，用 git branch 命令查看当前分支： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> $ git branch</span><br><span class="line">\* dev</span><br><span class="line">master  </span><br></pre></td></tr></table></figure>
+
+<p>把 dev 分支的工作成果合并到 master 分支上：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge dev</span><br><span class="line">Updating d17efd8..fec145a</span><br><span class="line">Fast-forward</span><br><span class="line">readme.txt | 1 +</span><br><span class="line">1 file changed, 1 insertion(+)  </span><br></pre></td></tr></table></figure>
+
+<p>合并完成后，就可以放心地删除 dev 分支了：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch -d dev</span><br><span class="line">Deleted branch dev (was fec145a).  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）小结"><a href="#（2）小结" class="headerlink" title="（2）小结"></a>（2）小结</h3><div class="note primary no-icon">
+            <p>Git 鼓励大量使用分支：<br>查看分支：git branch<br>创建分支：git branch 分支名<br>切换分支：git checkout 分支名<br>创建+切换分支：git checkout -b<br>合并某分支到当前分支：git merge<br>删除分支：git branch -d<br>当 Git 无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。用 git log –graph 命令可以看到分支合并图。  </p>
+          </div>]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React学习记录</title>
+    <url>/2020/09/07/React%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、React安装"><a href="#一、React安装" class="headerlink" title="一、React安装"></a>一、React安装</h2><ul>
+<li><strong>react.min.js</strong> - React 的核心库</li>
+<li><strong>react-dom.min.js</strong> - 提供与 DOM 相关的功能</li>
+<li><strong>babel.min.js</strong> - Babel 可以将 ES6 代码转为 ES5 代码，这样我们就能在目前不支持 ES6 浏览器上执行 React 代码。Babel 内嵌了对 JSX 的支持。通过将 Babel 和 babel-sublime 包（package）一同使用可以让源码的语法渲染上升到一个全新的水平。</li>
+</ul>
+<h3 id="1-使用-create-react-app-快速构建-React-开发环境"><a href="#1-使用-create-react-app-快速构建-React-开发环境" class="headerlink" title="1.使用 create-react-app 快速构建 React 开发环境"></a>1.使用 create-react-app 快速构建 React 开发环境</h3><p>create-react-app 自动创建的项目是基于 Webpack + ES6 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install -g create-react-app</span><br><span class="line">$ create-react-app reactstudy</span><br><span class="line">$ cd reactstudy&#x2F;</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
+
+<p>manifest.json 指定了开始页面 index.html，一切的开始都从这里开始，所以这个是代码执行的源头。</p>
+<h3 id="2-create-react-app-执行慢的解决方法"><a href="#2-create-react-app-执行慢的解决方法" class="headerlink" title="2.create-react-app 执行慢的解决方法"></a>2.create-react-app 执行慢的解决方法</h3><p>换成淘宝的资源</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org</span><br><span class="line">-- 配置后可通过下面方式来验证是否成功</span><br><span class="line">$ npm config get registry</span><br><span class="line">-- 或 npm info express</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、React-元素渲染"><a href="#二、React-元素渲染" class="headerlink" title="二、React 元素渲染"></a>二、React 元素渲染</h2><p>元素是构成 React 应用的最小单位，它用于描述屏幕上输出的内容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>将元素渲染到DOM中</p>
+<p>首先我们在一个 HTML 页面中添加一个 <strong>id=”example”</strong> 的 <strong><div></strong>:</p>
+<p>在此 div 中的所有内容都将由 React DOM 来管理，所以我们将其称为 “根” DOM 节点。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;;</span><br><span class="line">ReactDOM.render(    </span><br><span class="line">	element,</span><br><span class="line">    document.getElementById(&#39;example&#39;) </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、React-JSX"><a href="#三、React-JSX" class="headerlink" title="三、React   JSX"></a>三、React   JSX</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myDivElement &#x3D; &lt;div className&#x3D;&quot;foo&quot; &#x2F;&gt;;</span><br><span class="line">ReactDOM.render(myDivElement, document.getElementById(&#39;example&#39;));</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、React-组件"><a href="#四、React-组件" class="headerlink" title="四、React 组件"></a>四、React 组件</h2><h3 id="1-使用函数定义了一个组件"><a href="#1-使用函数定义了一个组件" class="headerlink" title="1.使用函数定义了一个组件"></a>1.使用函数定义了一个组件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function HelloMessage(props) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello World!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用-class-定义一个组件"><a href="#2-使用-class-定义一个组件" class="headerlink" title="2.使用 class 定义一个组件"></a>2.使用 class 定义一个组件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello World!&lt;&#x2F;h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>注意，原生 HTML 元素名以小写字母开头，而自定义的 React 类名以大写字母开头，比如 HelloMessage 不能写成 helloMessage。除此之外还需要注意组件类只能包含一个顶层标签，否则也会报错。</em></p>
+<p>如果我们需要向组件传递参数，可以使用 <strong>this.props</strong> 对象</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function HelloMessage(props) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello &#123;props.name&#125;!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const element &#x3D; &lt;HelloMessage name&#x3D;&quot;Runoob&quot;&#x2F;&gt;;</span><br><span class="line"> </span><br><span class="line">ReactDOM.render(</span><br><span class="line">    element,</span><br><span class="line">    document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、React-State-状态"><a href="#五、React-State-状态" class="headerlink" title="五、React State(状态)"></a>五、React State(状态)</h2><p>React 把组件看成是一个状态机（State Machines）。通过与用户的交互，实现不同状态，然后渲染 UI，让用户界面和数据保持一致。只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;现在是 &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Clock &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-将生命周期方法添加到类中"><a href="#1-将生命周期方法添加到类中" class="headerlink" title="1.将生命周期方法添加到类中"></a>1.将生命周期方法添加到类中</h3><p>在具有许多组件的应用程序中，在销毁时释放组件所占用的资源非常重要。每当 Clock 组件第一次加载到 DOM 中的时候，我们都想生成定时器，这在 React 中被称为<strong>挂载</strong>。同样，每当 Clock 生成的这个 DOM 被移除的时候，我们也会想要清除定时器，这在 React 中被称为<strong>卸载</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.timerID &#x3D; setInterval(</span><br><span class="line">      () &#x3D;&gt; this.tick(),</span><br><span class="line">      1000</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    clearInterval(this.timerID);</span><br><span class="line">  &#125;</span><br><span class="line">  tick() &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      date: new Date()</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;现在是 &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Clock &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码执行顺序：</strong></p>
+<ol>
+<li>当 <code>&lt;Clock /&gt;</code> 被传递给 <code>ReactDOM.render()</code> 时，React 调用 <code>Clock</code> 组件的构造函数。 由于 <code>Clock</code> 需要显示当前时间，所以使用包含当前时间的对象来初始化 <code>this.state</code> 。 我们稍后会更新此状态。</li>
+<li>React 然后调用 <code>Clock</code> 组件的 <code>render()</code> 方法。这是 React 了解屏幕上应该显示什么内容，然后 React 更新 DOM 以匹配 <code>Clock</code> 的渲染输出。</li>
+<li>当 <code>Clock</code> 的输出插入到 DOM 中时，React 调用 <code>componentDidMount()</code> 生命周期钩子。 在其中，<code>Clock</code> 组件要求浏览器设置一个定时器，每秒钟调用一次 <code>tick()</code>。</li>
+<li>浏览器每秒钟调用 <code>tick()</code> 方法。 在其中，<code>Clock</code> 组件通过使用包含当前时间的对象调用 <code>setState()</code> 来调度UI更新。 通过调用 <code>setState()</code> ，React 知道状态已经改变，并再次调用 <code>render()</code> 方法来确定屏幕上应当显示什么。 这一次，<code>render()</code> 方法中的 <code>this.state.date</code> 将不同，所以渲染输出将包含更新的时间，并相应地更新 DOM。</li>
+<li>一旦 <code>Clock</code> 组件被从 DOM 中移除，React 会调用 <code>componentWillUnmount()</code> 这个钩子函数，定时器也就会被清除。</li>
+</ol>
+<h2 id="六、React-Props"><a href="#六、React-Props" class="headerlink" title="六、React Props"></a>六、React Props</h2><p>state 和 props 主要的区别在于 <strong>props</strong> 是不可变的，而 state 可以根据与用户交互来改变。这就是为什么有些容器组件需要定义 state 来更新和修改数据。 而子组件只能通过 props 来传递数据。</p>
+<h3 id="1-State-和-Props"><a href="#1-State-和-Props" class="headerlink" title="1.State 和 Props"></a>1.State 和 Props</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class WebSite extends React.Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">      super();</span><br><span class="line"> </span><br><span class="line">      this.state &#x3D; &#123;</span><br><span class="line">        name: &quot;ConfidenceBoy&quot;,</span><br><span class="line">        site: &quot;https:&#x2F;&#x2F;www.handsomejie.cn&#x2F;&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Name name&#x3D;&#123;this.state.name&#125; &#x2F;&gt;</span><br><span class="line">        &lt;Link site&#x3D;&#123;this.state.site&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">class Name extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1&gt;&#123;this.props.name&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Link extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;a href&#x3D;&#123;this.props.site&#125;&gt;</span><br><span class="line">        &#123;this.props.site&#125;</span><br><span class="line">      &lt;&#x2F;a&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;WebSite &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、React-事件处理"><a href="#七、React-事件处理" class="headerlink" title="七、React 事件处理"></a>七、React 事件处理</h2><h3 id="1-事件处理"><a href="#1-事件处理" class="headerlink" title="1.事件处理"></a>1.事件处理</h3><p>React 元素的事件处理和 DOM 元素类似。但是有一点语法上的不同:</p>
+<ul>
+<li>React 事件绑定属性的命名采用驼峰式写法，而不是小写。</li>
+<li>如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM 元素的写法)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class LoggingButton extends React.Component &#123;</span><br><span class="line">  &#x2F;&#x2F; 这个语法确保了 &#96;this&#96; 绑定在  handleClick 中</span><br><span class="line">  &#x2F;&#x2F; 这里只是一个测试</span><br><span class="line">  handleClick &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;this is:&#39;, this);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;button onClick&#x3D;&#123;this.handleClick&#125;&gt;</span><br><span class="line">        Click me</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;向事件处理程序传递参数</span><br><span class="line">&lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.deleteRow(id, e)&#125;&gt;Delete Row&lt;&#x2F;button&gt;</span><br><span class="line">&lt;button onClick&#x3D;&#123;this.deleteRow.bind(this, id)&#125;&gt;Delete Row&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-条件渲染"><a href="#2-条件渲染" class="headerlink" title="2.条件渲染"></a>2.条件渲染</h3><p>创建一个 Greeting 组件，它会根据用户是否登录来显示其中之一：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Greeting(props) &#123;</span><br><span class="line">  const isLoggedIn &#x3D; props.isLoggedIn;</span><br><span class="line">  if (isLoggedIn) &#123;</span><br><span class="line">    return &lt;UserGreeting &#x2F;&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;GuestGreeting &#x2F;&gt;;</span><br><span class="line">&#125; </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &#x2F;&#x2F; 尝试修改 isLoggedIn&#x3D;&#123;true&#125;:</span><br><span class="line">  &lt;Greeting isLoggedIn&#x3D;&#123;false&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="与运算符-amp-amp"><a href="#与运算符-amp-amp" class="headerlink" title="与运算符 &amp;&amp;"></a>与运算符 &amp;&amp;</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Mailbox(props) &#123;</span><br><span class="line">  const unreadMessages &#x3D; props.unreadMessages;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Hello!&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;unreadMessages.length &gt; 0 &amp;&amp;</span><br><span class="line">        &lt;h2&gt;</span><br><span class="line">          您有 &#123;unreadMessages.length&#125; 条未读信息。</span><br><span class="line">        &lt;&#x2F;h2&gt;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const messages &#x3D; [&#39;React&#39;, &#39;Re: React&#39;, &#39;Re:Re: React&#39;];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Mailbox unreadMessages&#x3D;&#123;messages&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在 JavaScript 中，<strong>true &amp;&amp; expression</strong> 总是返回 <strong>expression</strong>，而 <strong>false &amp;&amp; expression</strong> 总是返回 <strong>false</strong>。因此，如果条件是 <strong>true</strong>，**&amp;&amp;** 右侧的元素就会被渲染，如果是 <strong>false</strong>，React 会忽略并跳过它。</p>
+<h4 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">condition ? true : false。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  const isLoggedIn &#x3D; this.state.isLoggedIn;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;isLoggedIn ? (</span><br><span class="line">        &lt;LogoutButton onClick&#x3D;&#123;this.handleLogoutClick&#125; &#x2F;&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;LoginButton onClick&#x3D;&#123;this.handleLoginClick&#125; &#x2F;&gt;</span><br><span class="line">      )&#125; </span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、React-列表-amp-Keys"><a href="#八、React-列表-amp-Keys" class="headerlink" title="八、React 列表 &amp; Keys"></a>八、React 列表 &amp; Keys</h2><p>组件接收数组参数，每个列表元素分配一个 key。Keys 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function ListItem(props) &#123;</span><br><span class="line">  &#x2F;&#x2F; 对啦！这里不需要指定key:</span><br><span class="line">  return &lt;li&gt;&#123;props.value&#125;&lt;&#x2F;li&gt;;</span><br><span class="line">&#125;</span><br><span class="line">function NumberList(props) &#123;</span><br><span class="line">  const numbers &#x3D; props.numbers;</span><br><span class="line">  const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">    &#x2F;&#x2F; 又对啦！key应该在数组的上下文中被指定</span><br><span class="line">    &lt;ListItem key&#x3D;&#123;number.toString()&#125;</span><br><span class="line">              value&#x3D;&#123;number&#125; &#x2F;&gt;</span><br><span class="line">  );</span><br><span class="line">  return (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;listItems&#125;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;NumberList numbers&#x3D;&#123;numbers&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、React-组件生命周期及AJAX"><a href="#九、React-组件生命周期及AJAX" class="headerlink" title="九、React 组件生命周期及AJAX"></a>九、React 组件生命周期及AJAX</h2><h3 id="1-生命周期"><a href="#1-生命周期" class="headerlink" title="1.生命周期"></a>1.生命周期</h3><p>组件的生命周期可分成三个状态：</p>
+<ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+<p>生命周期的方法有：</p>
+<ul>
+<li><strong>componentWillMount</strong> 在渲染前调用,在客户端也在服务端。</li>
+<li><strong>componentDidMount</strong> : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异步操作阻塞UI)。</li>
+<li><strong>componentWillReceiveProps</strong> 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</li>
+<li><strong>shouldComponentUpdate</strong> 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。<br>可以在你确认不需要更新组件时使用。</li>
+<li><strong>componentWillUpdate</strong>在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</li>
+<li><strong>componentDidUpdate</strong> 在组件完成更新后立即调用。在初始化时不会被调用。</li>
+<li><strong>componentWillUnmount</strong>在组件从 DOM 中移除之前立刻被调用。</li>
+</ul>
+<h3 id="2-AJAX"><a href="#2-AJAX" class="headerlink" title="2.AJAX"></a>2.AJAX</h3><p>React 组件的数据可以通过 componentDidMount 方法中的 Ajax 来获取，当从服务端获取数据时可以将数据存储在 state 中，再用 this.setState 方法重新渲染 UI。当使用异步加载数据时，在组件卸载前使用 componentWillUnmount 来取消未完成的请求。</p>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringIoc容器设计及实现</title>
     <url>/2020/08/31/SpringIoc%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
