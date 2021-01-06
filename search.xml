@@ -1,43 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>SpringIoc容器设计及实现</title>
-    <url>/2020/08/31/SpringIoc%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
-            <p>spring 的核心理念是Ioc(控制反转)和AOP(面向切面编程)</p>
-          </div>
-
-<h3 id="一、springIoc容器的设计"><a href="#一、springIoc容器的设计" class="headerlink" title="一、springIoc容器的设计"></a>一、springIoc容器的设计</h3><h4 id="1-容器的设计"><a href="#1-容器的设计" class="headerlink" title="1.容器的设计"></a>1.容器的设计</h4><div class="note primary no-icon">
-            <p>（1）BeanFactory<br>​（2）ApplicationContext(BeanFactory的子接口)</p>
-          </div>
-
-<p>​    </p>
-<h4 id="2-容器的初始化和依赖注入"><a href="#2-容器的初始化和依赖注入" class="headerlink" title="2.容器的初始化和依赖注入"></a>2.容器的初始化和依赖注入</h4><p>Bean定义到IoC容器中3种方式</p>
-<div class="note primary no-icon">
-            <p>​    （1）Resourse定位    资源定位，常使用注解方式<br>​    （2）BeanDefinition载入<br>​    （3）BeanDefinition注册</p>
-          </div>
-
-<h4 id="3-SpringBean的周期"><a href="#3-SpringBean的周期" class="headerlink" title="3.SpringBean的周期"></a>3.SpringBean的周期</h4><p>从容器初始化到销毁的过程</p>
-<h3 id="二、装配SpringBean"><a href="#二、装配SpringBean" class="headerlink" title="二、装配SpringBean"></a>二、装配SpringBean</h3><h4 id="1-3种装备方式"><a href="#1-3种装备方式" class="headerlink" title="1.    3种装备方式"></a>1.    3种装备方式</h4><div class="note primary no-icon">
-            <p>​    （1）构造器注入<br>​    （2）setter注入（主流方式）<br>​    （3）接口注入</p>
-          </div>
-
-
-
-
-
-<p>​    </p>
-]]></content>
-      <categories>
-        <category>spring</category>
-      </categories>
-      <tags>
-        <tag>spring</tag>
-        <tag>SpringIoc</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2020/08/26/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -54,6 +17,147 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>hexo常用命令</title>
+    <url>/2021/01/06/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-简写指令"><a href="#1-简写指令" class="headerlink" title="1.简写指令:"></a>1.简写指令:</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo n &quot;我的第一篇文章&quot;&#96;       等价于        &#96;hexo new &quot;我的第一篇文章&quot;&#96;  还等价于       &#96;hexo new post &quot;我的第一篇文章&quot;&#96;    </span><br><span class="line"> &#96;hexo p&#96; 等价于 &#96;hexo publish&#96;</span><br><span class="line"> &#96;hexo g&#96; 等价于 &#96;hexo generate&#96;  </span><br><span class="line"> &#96;hexo s&#96;等价于 &#96;hexo server&#96;     </span><br><span class="line"> &#96;hexo d&#96; 等价于 &#96;hexo deploy&#96;</span><br><span class="line"> &#96;hexo deploy -g&#96;  等价于 &#96;hexo deploy --generate&#96;</span><br><span class="line"> &#96;hexo generate -d&#96;等价于&#96;hexo generate --deploy</span><br></pre></td></tr></table></figure>
+
+<p><strong>注: hexo  clean 没有 简写,  git –version 没有简写</strong></p>
+<h2 id="2-指令说明"><a href="#2-指令说明" class="headerlink" title="2.指令说明:"></a>2.指令说明:</h2><p><code>hexo server</code>        #Hexo 会监视文件变动并自动更新，除修改<strong>站点配置文件</strong>外,无须重启服务器,直接刷新网页即可生效。<br> <code>hexo server -s</code> #以静态模式启动<br> <code>hexo server -p 5000</code> #更改访问端口   (默认端口为4000，’ctrl + c’关闭server)<br> <code>hexo server -i IP地址</code> #自定义 IP<br> <code>hexo clean</code> #清除缓存  ,网页正常情况下可以忽略此条命令,执行该指令后,会删掉站点根目录下的public文件夹<br> <code>hexo g</code> #生成静态网页  (执行 <code>$ hexo g</code>后会在站点根目录下生成public文件夹, hexo会将”/blog/source/“   下面的.md后缀的文件编译为.html后缀的文件,存放在”/blog/public/ “   路径下)<br> <code>hexo d</code> #将本地数据部署到远端服务器(如github)<br> <code>hexo init 文件夹名称</code> #初始化XX文件夹名称<br> <code>npm update hexo -g</code>#升级<br> <code>npm install hexo -g</code>#安装<br> <code>node-v</code>          #查看node.js版本号<br> <code>npm -v</code>        #查看npm版本号<br> <code>git --version</code>  #查看git版本号<br> <code>hexo -v</code>      #查看hexo版本号</p>
+<p><code>hexo publish [layout] &lt;title&gt;</code>   #通过 <code>publish</code> 命令将草稿移动到 <code>source/_posts</code> 文件夹,如:<code>$ hexo publish [layout] &lt;title&gt;</code>,草稿默认是不会显示在页面中的，可在执行时加上 <code>--draft</code> 参数，或是把 <code>render_drafts</code> 参数设为 <code>true</code>来预览草稿。</p>
+<p><code>hexo new aaa &quot;bbb&quot;</code>  # 新建一篇文章,文章名称和标题分别为bbb.md 和 bbb.   文章采用aaa布局,  此时会在站点根目录下的—-&gt;source—–&gt;_post文件夹下生成bbb.md文件,  bbb.md文件的顶部(—–分割线上方区域,也称作Front matter区),生成</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">layout : aaa&#96;</span><br><span class="line"> &#96;title:&#96;</span><br><span class="line"> &#96;date:</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Tools</tag>
+        <tag>常用命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode MySql记录</title>
+    <url>/2020/09/30/Leetcode-MySql%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-超过经理收入的员工"><a href="#1-超过经理收入的员工" class="headerlink" title="1.超过经理收入的员工"></a>1.超过经理收入的员工</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    *</span><br><span class="line">FROM</span><br><span class="line">    Employee AS a,	（新颖）</span><br><span class="line">    Employee AS b</span><br><span class="line">WHERE</span><br><span class="line">    a.ManagerId &#x3D; b.Id</span><br><span class="line">        AND a.Salary &gt; b.Salary</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-删除重复数据"><a href="#2-删除重复数据" class="headerlink" title="2.删除重复数据"></a>2.删除重复数据</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">delete a from Person a,Person b where a.Email &#x3D; b.Email and a.id &gt; b.id	</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-返回两个日期之间的天数（DATEDIFF）"><a href="#3-返回两个日期之间的天数（DATEDIFF）" class="headerlink" title="3.返回两个日期之间的天数（DATEDIFF）"></a>3.返回两个日期之间的天数（DATEDIFF）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT DATEDIFF(&#39;2008-12-30&#39;,&#39;2008-12-29&#39;) AS DiffDate</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-取第二高的薪水"><a href="#4-取第二高的薪水" class="headerlink" title="4.取第二高的薪水"></a>4.取第二高的薪水</h3><p>offset X   是跳过X个数据  limit Y      是选取Y个数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    IFNULL(</span><br><span class="line">      (SELECT DISTINCT Salary</span><br><span class="line">       FROM Employee</span><br><span class="line">       ORDER BY Salary DESC</span><br><span class="line">        LIMIT 1 OFFSET 1),</span><br><span class="line">    NULL) AS SecondHighestSalary</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-实现分数排名"><a href="#5-实现分数排名" class="headerlink" title="5.实现分数排名"></a>5.实现分数排名</h3><p>确定一个分数的排名，就是大于此分数的分数去重后的个数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select a.Score as Score,</span><br><span class="line">(select count(distinct b.Score) from Scores b where b.Score &gt;&#x3D; a.Score) as &#39;Rank&#39;</span><br><span class="line">from Scores a</span><br><span class="line">order by a.Score DESC</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>MySql</category>
+      </categories>
+      <tags>
+        <tag>MySql</tag>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AJAX学习记录</title>
+    <url>/2020/09/30/AJAX%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、AJAX简介"><a href="#一、AJAX简介" class="headerlink" title="一、AJAX简介"></a>一、AJAX简介</h2><p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML），AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.runoob.com/wp-content/uploads/2013/09/ajax-yl.png" alt="AJAX"></p>
+<h2 id="二、AJAX实例"><a href="#二、AJAX实例" class="headerlink" title="二、AJAX实例"></a>二、AJAX实例</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> xmlhttp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">	xmlhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;myDiv&quot;</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>&lt;/div&gt;</span><br><span class="line">&lt;button type=<span class="string">&quot;button&quot;</span> onclick=<span class="string">&quot;loadXMLDoc()&quot;</span>&gt;修改内容&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>div 部分用于显示来自服务器的信息。当按钮被点击时，它负责调用名为 loadXMLDoc() 的函数</p>
+<h2 id="三、AJAX创建对象"><a href="#三、AJAX创建对象" class="headerlink" title="三、AJAX创建对象"></a>三、AJAX创建对象</h2><p>XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
+<p>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、XHR请求"><a href="#四、XHR请求" class="headerlink" title="四、XHR请求"></a>四、XHR请求</h2><p>XMLHttpRequest 对象用于和服务器交换数据。如需将请求发送到服务器，使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>open(<em>method</em>,<em>url</em>,<em>async</em>)</th>
+<th align="left">规定请求的类型、URL 以及是否异步处理请求。<em>method</em>：请求的类型；GET 或 POST<em>url</em>：文件在服务器上的位置<em>async</em>：true（异步）或 false（同步）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>send(<em>string</em>)</td>
+<td align="left">将请求发送到服务器。<em>string</em>：仅用于 POST 请求</td>
+</tr>
+</tbody></table>
+<h2 id="五、XHR响应"><a href="#五、XHR响应" class="headerlink" title="五、XHR响应"></a>五、XHR响应</h2><p>如需获得来自服务器的响应，可使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">responseText</td>
+<td align="left">获得字符串形式的响应数据。</td>
+</tr>
+<tr>
+<td align="left">responseXML</td>
+<td align="left">获得 XML 形式的响应数据。</td>
+</tr>
+</tbody></table>
+<h3 id="1-responseText-属性"><a href="#1-responseText-属性" class="headerlink" title="1.responseText 属性"></a>1.responseText 属性</h3><p>如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-responseXML-属性"><a href="#2-responseXML-属性" class="headerlink" title="2.responseXML 属性"></a>2.responseXML 属性</h3><p>如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlDoc=xmlhttp.responseXML;</span><br><span class="line">txt=<span class="string">&quot;&quot;</span>;</span><br><span class="line">x=xmlDoc.getElementsByTagName(<span class="string">&quot;ARTIST&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;x.length;i++)</span><br><span class="line">&#123;</span><br><span class="line">    txt=txt + x[i].childNodes[<span class="number">0</span>].nodeValue + <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=txt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、XHR-ready-State"><a href="#六、XHR-ready-State" class="headerlink" title="六、XHR ready State"></a>六、XHR ready State</h2><h3 id="1-onreadystatechange-事件"><a href="#1-onreadystatechange-事件" class="headerlink" title="1.onreadystatechange 事件"></a>1.onreadystatechange 事件</h3><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当 readyState 改变时，就会触发 onreadystatechange 事件。readyState 属性存有 XMLHttpRequest 的状态信息。</p>
+<p>XMLHttpRequest 对象的三个重要的属性：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">onreadystatechange</td>
+<td align="left">存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</td>
+</tr>
+<tr>
+<td align="left">readyState</td>
+<td align="left">存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪</td>
+</tr>
+<tr>
+<td align="left">status</td>
+<td align="left">200: “OK” 404: 未找到页面</td>
+</tr>
+</tbody></table>
+<p>未完待续…</p>
+]]></content>
+      <categories>
+        <category>ajax</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+      </tags>
   </entry>
   <entry>
     <title>git学习记录</title>
@@ -228,126 +332,40 @@
       </tags>
   </entry>
   <entry>
-    <title>AJAX学习记录</title>
-    <url>/2020/09/30/AJAX%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、AJAX简介"><a href="#一、AJAX简介" class="headerlink" title="一、AJAX简介"></a>一、AJAX简介</h2><p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML），AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。</p>
-<p><img src= "/img/loading.gif" data-lazy-src="https://www.runoob.com/wp-content/uploads/2013/09/ajax-yl.png" alt="AJAX"></p>
-<h2 id="二、AJAX实例"><a href="#二、AJAX实例" class="headerlink" title="二、AJAX实例"></a>二、AJAX实例</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> xmlhttp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">	xmlhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;myDiv&quot;</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>&lt;/div&gt;</span><br><span class="line">&lt;button type=<span class="string">&quot;button&quot;</span> onclick=<span class="string">&quot;loadXMLDoc()&quot;</span>&gt;修改内容&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+    <title>SpringIoc容器设计及实现</title>
+    <url>/2020/08/31/SpringIoc%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
+            <p>spring 的核心理念是Ioc(控制反转)和AOP(面向切面编程)</p>
+          </div>
 
-<p>div 部分用于显示来自服务器的信息。当按钮被点击时，它负责调用名为 loadXMLDoc() 的函数</p>
-<h2 id="三、AJAX创建对象"><a href="#三、AJAX创建对象" class="headerlink" title="三、AJAX创建对象"></a>三、AJAX创建对象</h2><p>XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
-<p>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="一、springIoc容器的设计"><a href="#一、springIoc容器的设计" class="headerlink" title="一、springIoc容器的设计"></a>一、springIoc容器的设计</h3><h4 id="1-容器的设计"><a href="#1-容器的设计" class="headerlink" title="1.容器的设计"></a>1.容器的设计</h4><div class="note primary no-icon">
+            <p>（1）BeanFactory<br>​（2）ApplicationContext(BeanFactory的子接口)</p>
+          </div>
 
-<h2 id="四、XHR请求"><a href="#四、XHR请求" class="headerlink" title="四、XHR请求"></a>四、XHR请求</h2><p>XMLHttpRequest 对象用于和服务器交换数据。如需将请求发送到服务器，使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h4 id="2-容器的初始化和依赖注入"><a href="#2-容器的初始化和依赖注入" class="headerlink" title="2.容器的初始化和依赖注入"></a>2.容器的初始化和依赖注入</h4><p>Bean定义到IoC容器中3种方式</p>
+<div class="note primary no-icon">
+            <p>​    （1）Resourse定位    资源定位，常使用注解方式<br>​    （2）BeanDefinition载入<br>​    （3）BeanDefinition注册</p>
+          </div>
 
-<table>
-<thead>
-<tr>
-<th>open(<em>method</em>,<em>url</em>,<em>async</em>)</th>
-<th align="left">规定请求的类型、URL 以及是否异步处理请求。<em>method</em>：请求的类型；GET 或 POST<em>url</em>：文件在服务器上的位置<em>async</em>：true（异步）或 false（同步）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>send(<em>string</em>)</td>
-<td align="left">将请求发送到服务器。<em>string</em>：仅用于 POST 请求</td>
-</tr>
-</tbody></table>
-<h2 id="五、XHR响应"><a href="#五、XHR响应" class="headerlink" title="五、XHR响应"></a>五、XHR响应</h2><p>如需获得来自服务器的响应，可使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">responseText</td>
-<td align="left">获得字符串形式的响应数据。</td>
-</tr>
-<tr>
-<td align="left">responseXML</td>
-<td align="left">获得 XML 形式的响应数据。</td>
-</tr>
-</tbody></table>
-<h3 id="1-responseText-属性"><a href="#1-responseText-属性" class="headerlink" title="1.responseText 属性"></a>1.responseText 属性</h3><p>如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure>
+<h4 id="3-SpringBean的周期"><a href="#3-SpringBean的周期" class="headerlink" title="3.SpringBean的周期"></a>3.SpringBean的周期</h4><p>从容器初始化到销毁的过程</p>
+<h3 id="二、装配SpringBean"><a href="#二、装配SpringBean" class="headerlink" title="二、装配SpringBean"></a>二、装配SpringBean</h3><h4 id="1-3种装备方式"><a href="#1-3种装备方式" class="headerlink" title="1.    3种装备方式"></a>1.    3种装备方式</h4><div class="note primary no-icon">
+            <p>​    （1）构造器注入<br>​    （2）setter注入（主流方式）<br>​    （3）接口注入</p>
+          </div>
 
-<h3 id="2-responseXML-属性"><a href="#2-responseXML-属性" class="headerlink" title="2.responseXML 属性"></a>2.responseXML 属性</h3><p>如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlDoc=xmlhttp.responseXML;</span><br><span class="line">txt=<span class="string">&quot;&quot;</span>;</span><br><span class="line">x=xmlDoc.getElementsByTagName(<span class="string">&quot;ARTIST&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;x.length;i++)</span><br><span class="line">&#123;</span><br><span class="line">    txt=txt + x[i].childNodes[<span class="number">0</span>].nodeValue + <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=txt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="六、XHR-ready-State"><a href="#六、XHR-ready-State" class="headerlink" title="六、XHR ready State"></a>六、XHR ready State</h2><h3 id="1-onreadystatechange-事件"><a href="#1-onreadystatechange-事件" class="headerlink" title="1.onreadystatechange 事件"></a>1.onreadystatechange 事件</h3><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当 readyState 改变时，就会触发 onreadystatechange 事件。readyState 属性存有 XMLHttpRequest 的状态信息。</p>
-<p>XMLHttpRequest 对象的三个重要的属性：</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">onreadystatechange</td>
-<td align="left">存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</td>
-</tr>
-<tr>
-<td align="left">readyState</td>
-<td align="left">存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪</td>
-</tr>
-<tr>
-<td align="left">status</td>
-<td align="left">200: “OK” 404: 未找到页面</td>
-</tr>
-</tbody></table>
-<p>未完待续…</p>
+
+
+
+<p>​    </p>
 ]]></content>
       <categories>
-        <category>ajax</category>
+        <category>spring</category>
       </categories>
       <tags>
-        <tag>ajax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Leetcode MySql记录</title>
-    <url>/2020/09/30/Leetcode-MySql%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-超过经理收入的员工"><a href="#1-超过经理收入的员工" class="headerlink" title="1.超过经理收入的员工"></a>1.超过经理收入的员工</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    *</span><br><span class="line">FROM</span><br><span class="line">    Employee AS a,	（新颖）</span><br><span class="line">    Employee AS b</span><br><span class="line">WHERE</span><br><span class="line">    a.ManagerId &#x3D; b.Id</span><br><span class="line">        AND a.Salary &gt; b.Salary</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-删除重复数据"><a href="#2-删除重复数据" class="headerlink" title="2.删除重复数据"></a>2.删除重复数据</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">delete a from Person a,Person b where a.Email &#x3D; b.Email and a.id &gt; b.id	</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-返回两个日期之间的天数（DATEDIFF）"><a href="#3-返回两个日期之间的天数（DATEDIFF）" class="headerlink" title="3.返回两个日期之间的天数（DATEDIFF）"></a>3.返回两个日期之间的天数（DATEDIFF）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT DATEDIFF(&#39;2008-12-30&#39;,&#39;2008-12-29&#39;) AS DiffDate</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-取第二高的薪水"><a href="#4-取第二高的薪水" class="headerlink" title="4.取第二高的薪水"></a>4.取第二高的薪水</h3><p>offset X   是跳过X个数据  limit Y      是选取Y个数据</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    IFNULL(</span><br><span class="line">      (SELECT DISTINCT Salary</span><br><span class="line">       FROM Employee</span><br><span class="line">       ORDER BY Salary DESC</span><br><span class="line">        LIMIT 1 OFFSET 1),</span><br><span class="line">    NULL) AS SecondHighestSalary</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-实现分数排名"><a href="#5-实现分数排名" class="headerlink" title="5.实现分数排名"></a>5.实现分数排名</h3><p>确定一个分数的排名，就是大于此分数的分数去重后的个数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select a.Score as Score,</span><br><span class="line">(select count(distinct b.Score) from Scores b where b.Score &gt;&#x3D; a.Score) as &#39;Rank&#39;</span><br><span class="line">from Scores a</span><br><span class="line">order by a.Score DESC</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>MySql</category>
-      </categories>
-      <tags>
-        <tag>MySql</tag>
-        <tag>Leetcode</tag>
+        <tag>spring</tag>
+        <tag>SpringIoc</tag>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
