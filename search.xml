@@ -1,6 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AJAX学习记录</title>
+    <url>/2020/09/30/AJAX%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、AJAX简介"><a href="#一、AJAX简介" class="headerlink" title="一、AJAX简介"></a>一、AJAX简介</h2><p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML），AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://www.runoob.com/wp-content/uploads/2013/09/ajax-yl.png" alt="AJAX"></p>
+<h2 id="二、AJAX实例"><a href="#二、AJAX实例" class="headerlink" title="二、AJAX实例"></a>二、AJAX实例</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> xmlhttp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">	xmlhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;myDiv&quot;</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>&lt;/div&gt;</span><br><span class="line">&lt;button type=<span class="string">&quot;button&quot;</span> onclick=<span class="string">&quot;loadXMLDoc()&quot;</span>&gt;修改内容&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>div 部分用于显示来自服务器的信息。当按钮被点击时，它负责调用名为 loadXMLDoc() 的函数</p>
+<h2 id="三、AJAX创建对象"><a href="#三、AJAX创建对象" class="headerlink" title="三、AJAX创建对象"></a>三、AJAX创建对象</h2><p>XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
+<p>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、XHR请求"><a href="#四、XHR请求" class="headerlink" title="四、XHR请求"></a>四、XHR请求</h2><p>XMLHttpRequest 对象用于和服务器交换数据。如需将请求发送到服务器，使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>open(<em>method</em>,<em>url</em>,<em>async</em>)</th>
+<th align="left">规定请求的类型、URL 以及是否异步处理请求。<em>method</em>：请求的类型；GET 或 POST<em>url</em>：文件在服务器上的位置<em>async</em>：true（异步）或 false（同步）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>send(<em>string</em>)</td>
+<td align="left">将请求发送到服务器。<em>string</em>：仅用于 POST 请求</td>
+</tr>
+</tbody></table>
+<h2 id="五、XHR响应"><a href="#五、XHR响应" class="headerlink" title="五、XHR响应"></a>五、XHR响应</h2><p>如需获得来自服务器的响应，可使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">responseText</td>
+<td align="left">获得字符串形式的响应数据。</td>
+</tr>
+<tr>
+<td align="left">responseXML</td>
+<td align="left">获得 XML 形式的响应数据。</td>
+</tr>
+</tbody></table>
+<h3 id="1-responseText-属性"><a href="#1-responseText-属性" class="headerlink" title="1.responseText 属性"></a>1.responseText 属性</h3><p>如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-responseXML-属性"><a href="#2-responseXML-属性" class="headerlink" title="2.responseXML 属性"></a>2.responseXML 属性</h3><p>如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlDoc=xmlhttp.responseXML;</span><br><span class="line">txt=<span class="string">&quot;&quot;</span>;</span><br><span class="line">x=xmlDoc.getElementsByTagName(<span class="string">&quot;ARTIST&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;x.length;i++)</span><br><span class="line">&#123;</span><br><span class="line">    txt=txt + x[i].childNodes[<span class="number">0</span>].nodeValue + <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=txt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、XHR-ready-State"><a href="#六、XHR-ready-State" class="headerlink" title="六、XHR ready State"></a>六、XHR ready State</h2><h3 id="1-onreadystatechange-事件"><a href="#1-onreadystatechange-事件" class="headerlink" title="1.onreadystatechange 事件"></a>1.onreadystatechange 事件</h3><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当 readyState 改变时，就会触发 onreadystatechange 事件。readyState 属性存有 XMLHttpRequest 的状态信息。</p>
+<p>XMLHttpRequest 对象的三个重要的属性：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">onreadystatechange</td>
+<td align="left">存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</td>
+</tr>
+<tr>
+<td align="left">readyState</td>
+<td align="left">存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪</td>
+</tr>
+<tr>
+<td align="left">status</td>
+<td align="left">200: “OK” 404: 未找到页面</td>
+</tr>
+</tbody></table>
+<p>未完待续…</p>
+]]></content>
+      <categories>
+        <category>ajax</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JWT实战总结</title>
+    <url>/2021/07/13/JWT%E5%AE%9E%E6%88%98%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近由于我们项目接入的学校越来越多，导入了大量师生的个人信息，因此提高项目的安全性至关重要。由于我们是前后端分离的项目，之前前端直接可以调用后台接口，基本上不需要任何验证，为了提高系统安全性，引入JWT进行认证和授权，前端在调用接口时，使用springMVC拦截器拦截请求，通过JWT校验传过来的令牌（token）是否正确，如果正确则相应请求，否则会重定向至登录界面，通过登录获取令牌。以下是该功能的具体实现：</p>
+<h2 id="1-什么是JWT"><a href="#1-什么是JWT" class="headerlink" title="1.什么是JWT"></a>1.什么是JWT</h2><p>JWT简称JSON Web Token,也就是通过JSON形式作为Web应用中的令牌,用于在各方之间安全地将信息作为JSON对象传输。在数据传输过程中还可以完成数据加密、签名等相关处理。                                                                                                                                                                                        </p>
+<h2 id="2-JWT能做什么"><a href="#2-JWT能做什么" class="headerlink" title="2.JWT能做什么"></a>2.JWT能做什么</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.授权</span></span><br><span class="line"><span class="bullet">-</span> 这是使用JWT的最常见方案。一旦用户登录，每个后续请求将包括JWT，从而允许用户访问该令牌允许的路由，服务和资源。单点登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用。</span><br><span class="line"></span><br><span class="line"><span class="section"># 2.信息交换</span></span><br><span class="line"><span class="bullet">-</span> JSON Web Token是在各方之间安全地传输信息的好方法。因为可以对JWT进行签名（例如，使用公钥/私钥对），所以您可以确保发件人是他们所说的人。此外，由于签名是使用标头和有效负载计算的，因此您还可以验证内容是否遭到篡改。</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-为什么是JWT"><a href="#3-为什么是JWT" class="headerlink" title="3.为什么是JWT"></a>3.为什么是JWT</h2><h3 id="基于传统的Session认证"><a href="#基于传统的Session认证" class="headerlink" title="基于传统的Session认证"></a>基于传统的Session认证</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.认证方式</span></span><br><span class="line"><span class="bullet">-</span> 我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</span><br><span class="line"></span><br><span class="line"><span class="section"># 2.认证流程</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/WEUdWd"><img src= "/img/loading.gif" data-lazy-src="https://z3.ax1x.com/2021/07/13/WEUdWd.png" alt="WEUdWd.png"></a></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 3.暴露问题</span></span><br><span class="line"><span class="bullet">-</span> 1.每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以方便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着认证用户的增多，服务端的开销会明显增大</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 2.用户认证之后，服务端做认证记录，如果认证的记录被保存在内存中的话，这意味着用户下次请求还必须要请求在这台服务器上,这样才能拿到授权的资源，这样在分布式的应用上，相应的限制了负载均衡器的能力。这也意味着限制了应用的扩展能力。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 3.因为是基于cookie来进行用户识别的, cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 4.在前后端分离系统中就更加痛苦:如下图所示</span><br><span class="line"><span class="code">	也就是说前后端分离在应用解耦后增加了部署的复杂性。通常用户一次请求就要转发多次。如果用session 每次携带sessionid 到服务	器，服务器还要查询用户信息。同时如果用户很多。这些信息存储在服务器内存中，给服务器增加负担。还有就是CSRF（跨站伪造请求攻	击）攻击，session是基于cookie进行用户识别的, cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。还有就是	     sessionid就是一个特征值，表达的信息不够丰富。不容易扩展。而且如果你后端应用是多节点部署。那么就需要实现session共享机制。	不方便集群应用。</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/WEUrOP"><img src= "/img/loading.gif" data-lazy-src="https://z3.ax1x.com/2021/07/13/WEUrOP.png" alt="WEUrOP.png"></a></p>
+<h3 id="基于JWT认证"><a href="#基于JWT认证" class="headerlink" title="基于JWT认证"></a>基于JWT认证</h3><p><a href="https://imgtu.com/i/WEUhSs"><img src= "/img/loading.gif" data-lazy-src="https://z3.ax1x.com/2021/07/13/WEUhSs.png" alt="WEUhSs.png"></a></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.认证流程</span></span><br><span class="line"><span class="bullet">-</span> 首先，前端通过Web表单将自己的用户名和密码发送到后端的接口。这一过程一般是一个HTTP POST请求。建议的方式是通过SSL加密的传输（https协议），从而避免敏感信息被嗅探。</span><br><span class="line"><span class="bullet">-</span> 后端核对用户名和密码成功后，将用户的id等其他信息作为JWT Payload（负载），将其与头部分别进行Base64编码拼接后签名，形成一个JWT(Token)。形成的JWT就是一个形同lll.zzz.xxx的字符串。 token head.payload.singurater</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 后端将JWT字符串作为登录成功的返回结果返回给前端。前端可以将返回的结果保存在localStorage或sessionStorage上，退出登录时前端删除保存的JWT即可。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 前端在每次请求时将JWT放入HTTP Header中的Authorization位。(解决XSS和XSRF问题) HEADER</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 后端检查是否存在，如存在验证JWT的有效性。例如，检查签名是否正确；检查Token是否过期；检查Token的接收方是否是自己（可选）。</span><br><span class="line"><span class="bullet">-</span> 验证通过后后端使用JWT中包含的用户信息进行其他逻辑操作，返回相应结果。</span><br><span class="line"></span><br><span class="line"><span class="section"># 2.jwt优势</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 简洁(Compact): 可以通过URL，POST参数或者在HTTP header发送，因为数据量小，传输速度也很快</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 自包含(Self-contained)：负载中包含了所有用户所需要的信息，避免了多次查询数据库</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 因为Token是以JSON加密的形式保存在客户端的，所以JWT是跨语言的，原则上任何web形式都支持。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 不需要在服务端保存会话信息，特别适用于分布式微服务。</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-JWT的结构是什么"><a href="#4-JWT的结构是什么" class="headerlink" title="4.JWT的结构是什么?"></a>4.JWT的结构是什么?</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">token   string  ====&gt;  header.payload.singnature   token   </span><br><span class="line"></span><br><span class="line"><span class="section"># 1.令牌组成</span></span><br><span class="line"><span class="bullet">-</span> 1.标头(Header)</span><br><span class="line"><span class="bullet">-</span> 2.有效载荷(Payload)</span><br><span class="line"><span class="bullet">-</span> 3.签名(Signature)</span><br><span class="line"><span class="bullet">-</span> 因此，JWT通常如下所示:xxxxx.yyyyy.zzzzz   Header.Payload.Signature</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 2.Header</span></span><br><span class="line"><span class="bullet">-</span> 标头通常由两部分组成：令牌的类型（即JWT）和所使用的签名算法，例如HMAC SHA256或RSA。它会使用 Base64 编码组成 JWT 结构的第一部分。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 注意:Base64是一种编码，也就是说，它是可以被翻译回原来的样子来的。它并不是一种加密过程。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 3.Payload</span></span><br><span class="line"><span class="bullet">-</span> 令牌的第二部分是有效负载，其中包含声明。声明是有关实体（通常是用户）和其他数据的声明。同样的，它会使用 Base64 编码组成 JWT 结构的第二部分</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;sub&quot;</span>: <span class="string">&quot;1234567890&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;John Doe&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;admin&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 4.Signature</span></span><br><span class="line"><span class="bullet">-</span> 前面两部分都是使用 Base64 进行编码的，即前端可以解开知道里面的信息。Signature 需要使用编码后的 header 和 payload 以及我们提供的一个密钥，然后使用 header 中指定的签名算法（HS256）进行签名。签名的作用是保证 JWT 没有被篡改过</span><br><span class="line"><span class="bullet">-</span> 如:</span><br><span class="line"><span class="code">	HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),secret);</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code"># 签名目的</span></span><br><span class="line"><span class="code">- 最后一步签名的过程，实际上是对头部以及负载内容进行签名，防止内容被窜改。如果有人对头部以及负载的内容解码之后进行修改，再进行编码，最后加上之前的签名组合形成新的JWT的话，那么服务器端会判断出新的头部和负载形成的签名和JWT附带上的签名是不一样的。如果要对新的头部和负载进行签名，在不知道服务器加密时用的密钥的话，得出来的签名也是不一样的。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code"># 信息安全问题</span></span><br><span class="line"><span class="code">- 在这里大家一定会问一个问题：Base64是一种编码，是可逆的，那么我的信息不就被暴露了吗？</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">- 是的。所以，在JWT中，不应该在负载里面加入任何敏感的数据。在上面的例子中，我们传输的是用户的User ID。这个值实际上不是什么敏	感内容，一般情况下被知道也是安全的。但是像密码这样的内容就不能被放在JWT中了。如果将用户的密码放在了JWT中，那么怀有恶意的第	三方通过Base64解码就能很快地知道你的密码了。因此JWT适合用于向Web应用传递一些非敏感信息。JWT还经常用于设计用户认证和授权系	统，甚至实现Web应用的单点登录。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 5.放在一起</span></span><br><span class="line"><span class="bullet">-</span> 输出是三个由点分隔的Base64-URL字符串，可以在HTML和HTTP环境中轻松传递这些字符串，与基于XML的标准（例如SAML）相比，它更紧凑。</span><br><span class="line"><span class="bullet">-</span> 简洁(Compact)</span><br><span class="line"><span class="code">	可以通过URL, POST 参数或者在 HTTP header 发送，因为数据量小，传输速度快</span></span><br><span class="line"><span class="code">- 自包含(Self-contained)</span></span><br><span class="line"><span class="code">	负载中包含了所有用户所需要的信息，避免了多次查询数据库</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-使用JWT"><a href="#5-使用JWT" class="headerlink" title="5.使用JWT"></a>5.使用JWT</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.引入依赖</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入jwt--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 2.生成token</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Calendar instance = Calendar.getInstance();</span><br><span class="line">instance.add(Calendar.SECOND, <span class="number">90</span>);</span><br><span class="line"><span class="comment">//生成令牌</span></span><br><span class="line">String token = JWT.create()</span><br><span class="line">  .withClaim(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;张三&quot;</span>)<span class="comment">//设置自定义用户名</span></span><br><span class="line">  .withExpiresAt(instance.getTime())<span class="comment">//设置过期时间</span></span><br><span class="line">  .sign(Algorithm.HMAC256(<span class="string">&quot;token!Q2W#E$RW&quot;</span>));<span class="comment">//设置签名 保密 复杂</span></span><br><span class="line"><span class="comment">//输出令牌</span></span><br><span class="line">System.out.println(token);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> 生成结果</span><br><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsicGhvbmUiLCIxNDMyMzIzNDEzNCJdLCJleHAiOjE1OTU3Mzk0NDIsInVzZXJuYW1lIjoi5byg5LiJIn0.aHmE3RNqvAjFr<span class="emphasis">_dvyn_</span>sD2VJ46P7EGiS5OBMO<span class="emphasis">_TI5jg</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 3.根据令牌和签名解析数据</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(<span class="string">&quot;token!Q2W#E$RW&quot;</span>)).build();</span><br><span class="line">DecodedJWT decodedJWT = jwtVerifier.verify(token);</span><br><span class="line">System.out.println(<span class="string">&quot;用户名: &quot;</span> + decodedJWT.getClaim(<span class="string">&quot;username&quot;</span>).asString());</span><br><span class="line">System.out.println(<span class="string">&quot;过期时间: &quot;</span>+decodedJWT.getExpiresAt());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 4.常见异常信息</span></span><br><span class="line"><span class="bullet">-</span> SignatureVerificationException:				签名不一致异常</span><br><span class="line"><span class="bullet">-</span> TokenExpiredException:    						令牌过期异常</span><br><span class="line"><span class="bullet">-</span> AlgorithmMismatchException:						算法不匹配异常</span><br><span class="line"><span class="bullet">-</span> InvalidClaimException:								失效的payload异常</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-封装工具类"><a href="#6-封装工具类" class="headerlink" title="6.封装工具类"></a>6.封装工具类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JWTUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String TOKEN = <span class="string">&quot;token!Q@W3e4r&quot;</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> map  //传入payload</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回token</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getToken</span><span class="params">(Map&lt;String,String&gt; map)</span></span>&#123;</span><br><span class="line">        JWTCreator.Builder builder = JWT.create();</span><br><span class="line">        map.forEach((k,v)-&gt;&#123;</span><br><span class="line">            builder.withClaim(k,v);</span><br><span class="line">        &#125;);</span><br><span class="line">        Calendar instance = Calendar.getInstance();</span><br><span class="line">        instance.add(Calendar.SECOND,<span class="number">7</span>);</span><br><span class="line">        builder.withExpiresAt(instance.getTime());</span><br><span class="line">        <span class="keyword">return</span> builder.sign(Algorithm.HMAC256(TOKEN)).toString();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 验证token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">verify</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">        JWT.require(Algorithm.HMAC256(TOKEN)).build().verify(token);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取token中payload</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DecodedJWT <span class="title">getToken</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JWT.require(Algorithm.HMAC256(TOKEN)).build().verify(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-整合springboot"><a href="#7-整合springboot" class="headerlink" title="7.整合springboot"></a>7.整合springboot</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 0.搭建springboot+mybatis+jwt环境</span></span><br><span class="line"><span class="bullet">-</span> 引入依赖</span><br><span class="line"><span class="bullet">-</span> 编写配置</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入jwt--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入mybatis--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入lombok--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入druid--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.19<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入mysql--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.38<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8989</span></span><br><span class="line"><span class="meta">spring.application.name</span>=<span class="string">jwt</span></span><br><span class="line"></span><br><span class="line"><span class="meta">spring.datasource.type</span>=<span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"><span class="meta">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/jwt?characterEncoding=UTF-8</span></span><br><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">root</span></span><br><span class="line"></span><br><span class="line"><span class="meta">mybatis.type-aliases-package</span>=<span class="string">com.handsomejie.entity</span></span><br><span class="line"><span class="meta">mybatis.mapper-locations</span>=<span class="string">classpath:com/baizhi/mapper/*.xml</span></span><br><span class="line"></span><br><span class="line"><span class="meta">logging.level.com.baizhi.dao</span>=<span class="string">debug</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JWT</category>
+      </categories>
+      <tags>
+        <tag>JWT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JAVA编程思想</title>
+    <url>/2021/04/12/JAVA%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><h3 id="1-jvm、字节码及其好处"><a href="#1-jvm、字节码及其好处" class="headerlink" title="1.jvm、字节码及其好处"></a>1.jvm、字节码及其好处</h3><p>在 Java 中，JVM 可以理解的代码就叫做<code>字节码</code>（即扩展名为 <code>.class</code> 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。</p>
+<p>JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，java 命令和其他的一些基础构件。但是，它不能用于创建新程序。</p>
+<h3 id="2-从源代码到执行的三个步骤"><a href="#2-从源代码到执行的三个步骤" class="headerlink" title="2.从源代码到执行的三个步骤"></a>2.从源代码到执行的三个步骤</h3><p>Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。字节码和不同系统的 JVM 实现是 Java 语言“一次编译，随处可以运行”的关键所在。</p>
+<h3 id="3-java与c-的区别"><a href="#3-java与c-的区别" class="headerlink" title="3.java与c++的区别"></a>3.java与c++的区别</h3><ul>
+<li>都是面向对象的语言，都支持封装、继承和多态</li>
+<li>Java 不提供指针来直接访问内存，程序内存更加安全</li>
+<li>Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承。</li>
+<li>Java 有自动内存管理垃圾回收机制(GC)，不需要程序员手动释放无用内存</li>
+<li><strong>在 C 语言中，字符串或字符数组最后都会有一个额外的字符<code>&#39;\0&#39;</code>来表示结束。但是，Java 语言中没有结束符这一概念。</strong> 这是一个值得深度思考的问题，具体原因推荐看这篇文章： <a href="https://blog.csdn.net/sszgg2006/article/details/49148189">https://blog.csdn.net/sszgg2006/article/details/49148189</a></li>
+</ul>
+<h3 id="4-为什么java编译与解释并存"><a href="#4-为什么java编译与解释并存" class="headerlink" title="4.为什么java编译与解释并存"></a>4.为什么java编译与解释并存</h3><h3 id="5-continue、break、和return的区别"><a href="#5-continue、break、和return的区别" class="headerlink" title="5.continue、break、和return的区别"></a>5.continue、break、和return的区别</h3><p>return 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：</p>
+<ol>
+<li><code>return;</code> ：直接使用 return 结束方法执行，用于没有返回值函数的方法</li>
+<li><code>return value;</code> ：return 一个特定值，用于有返回值函数的方法</li>
+</ol>
+<h3 id="6-Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？"><a href="#6-Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？" class="headerlink" title="6.Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？"></a>6.Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？</h3><p>Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。<strong>Java的泛型是伪泛型，这是因为Java在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。</strong>泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。</p>
+<h3 id="7-和equals的区别"><a href="#7-和equals的区别" class="headerlink" title="7.==和equals的区别"></a>7.==和equals的区别</h3><p><strong><code>==</code></strong> : 它的作用是判断两个对象的地址是不是相等。即判断两个对象是不是同一个对象。(<strong>基本数据类型==比较的是值，引用数据类型==比较的是内存地址</strong>)，因为 Java 只有值传递，所以，对于 == 来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。</p>
+<p><strong><code>equals()</code></strong> : 它的作用也是判断两个对象是否相等，它不能用于比较基本数据类型的变量。<code>equals()</code>方法存在于<code>Object</code>类中，而<code>Object</code>类是所有类的直接或间接父类。</p>
+<p><code>equals()</code> 方法存在两种使用情况：</p>
+<ul>
+<li>情况 1：类没有覆盖 <code>equals()</code>方法。则通过<code> equals()</code>比较该类的两个对象时，等价于通过“==”比较这两个对象。使用的默认是 <code>Object</code>类<code>equals()</code>方法。</li>
+<li>情况 2：类覆盖了 <code>equals()</code>方法。一般，我们都覆盖 <code>equals()</code>方法来两个对象的内容相等；若它们的内容相等，则返回 true(即，认为这两个对象相等)。</li>
+</ul>
+<p>说明：</p>
+<ul>
+<li><code>String</code> 中的 <code>equals</code> 方法是被重写过的，因为 <code>Object</code> 的 <code>equals</code> 方法是比较的对象的内存地址，而 <code>String</code> 的 <code>equals</code> 方法比较的是对象的值。</li>
+<li>当创建 <code>String</code> 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 <code>String</code> 对象。</li>
+</ul>
+<h3 id="8-hashCode-与-equals"><a href="#8-hashCode-与-equals" class="headerlink" title="8.hashCode()与 equals()"></a>8.hashCode()与 equals()</h3><p><a href="https://www.cnblogs.com/skywang12345/p/3324958.html">https://www.cnblogs.com/skywang12345/p/3324958.html</a></p>
+<h3 id="9-基本数据类型"><a href="#9-基本数据类型" class="headerlink" title="9.基本数据类型"></a>9.基本数据类型</h3><p>Java<strong>中</strong>有8种基本数据类型，分别为：</p>
+<ol>
+<li>6种数字类型 ：byte、short、int、long、float、double</li>
+<li>1种字符类型：char</li>
+<li>1种布尔型：boolean。</li>
+</ol>
+<p>这八种基本类型都有对应的包装类分别为：Byte、Short、Integer、Long、Float、Double、Character、Boolean</p>
+<h3 id="10-持有对象"><a href="#10-持有对象" class="headerlink" title="10.持有对象"></a>10.持有对象</h3>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode MySQL记录</title>
+    <url>/2020/09/30/Leetcode-MySql%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-超过经理收入的员工"><a href="#1-超过经理收入的员工" class="headerlink" title="1.超过经理收入的员工"></a>1.超过经理收入的员工</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    *</span><br><span class="line">FROM</span><br><span class="line">    Employee AS a,	（新颖）</span><br><span class="line">    Employee AS b</span><br><span class="line">WHERE</span><br><span class="line">    a.ManagerId &#x3D; b.Id</span><br><span class="line">        AND a.Salary &gt; b.Salary</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-删除重复数据"><a href="#2-删除重复数据" class="headerlink" title="2.删除重复数据"></a>2.删除重复数据</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">delete a from Person a,Person b where a.Email &#x3D; b.Email and a.id &gt; b.id	</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-返回两个日期之间的天数（DATEDIFF）"><a href="#3-返回两个日期之间的天数（DATEDIFF）" class="headerlink" title="3.返回两个日期之间的天数（DATEDIFF）"></a>3.返回两个日期之间的天数（DATEDIFF）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT DATEDIFF(&#39;2008-12-30&#39;,&#39;2008-12-29&#39;) AS DiffDate</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-取第二高的薪水"><a href="#4-取第二高的薪水" class="headerlink" title="4.取第二高的薪水"></a>4.取第二高的薪水</h3><p>offset X   是跳过X个数据  limit Y      是选取Y个数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    IFNULL(</span><br><span class="line">      (SELECT DISTINCT Salary</span><br><span class="line">       FROM Employee</span><br><span class="line">       ORDER BY Salary DESC</span><br><span class="line">        LIMIT 1 OFFSET 1),</span><br><span class="line">    NULL) AS SecondHighestSalary</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-实现分数排名"><a href="#5-实现分数排名" class="headerlink" title="5.实现分数排名"></a>5.实现分数排名</h3><p>确定一个分数的排名，就是大于此分数的分数去重后的个数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select a.Score as Score,</span><br><span class="line">(select count(distinct b.Score) from Scores b where b.Score &gt;&#x3D; a.Score) as &#39;Rank&#39;</span><br><span class="line">from Scores a</span><br><span class="line">order by a.Score DESC</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL学习记录</title>
+    <url>/2021/04/12/MySQL%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="1-事务的四大特性（ACID）"><a href="#1-事务的四大特性（ACID）" class="headerlink" title="1.事务的四大特性（ACID）"></a>1.事务的四大特性（ACID）</h3><ol>
+<li><strong>原子性（Atomicity）：</strong> 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
+<li><strong>一致性（Consistency）：</strong> 执行事务后，数据库从一个正确的状态变化到另一个正确的状态；</li>
+<li><strong>隔离性（Isolation）：</strong> 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
+<li><strong>持久性（Durability）：</strong> 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
+</ol>
+<h3 id="2-MyISAM和InnoDB区别"><a href="#2-MyISAM和InnoDB区别" class="headerlink" title="2.MyISAM和InnoDB区别"></a><a href="https://snailclimb.gitee.io/javaguide/#/docs/database/MySQL?id=myisam%E5%92%8Cinnodb%E5%8C%BA%E5%88%AB">2.MyISAM和InnoDB区别</a></h3><p>MyISAM是MySQL的默认数据库引擎（5.5版之前）。虽然性能极佳，而且提供了大量的特性，包括全文索引、压缩、空间函数等，但MyISAM不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。不过，5.5版本之后，MySQL引入了InnoDB（事务性数据库引擎），MySQL 5.5版本后默认的存储引擎为InnoDB。</p>
+<p>大多数时候我们使用的都是 InnoDB 存储引擎，但是在某些情况下使用 MyISAM 也是合适的比如读密集的情况下。（如果你不介意 MyISAM 崩溃恢复问题的话）。</p>
+<h4 id="两者的对比："><a href="#两者的对比：" class="headerlink" title="两者的对比："></a>两者的对比：</h4><ol>
+<li><strong>是否支持行级锁</strong> : MyISAM 只有表级锁(table-level locking)，而InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁。</li>
+<li><strong>是否支持事务和崩溃后的安全恢复： MyISAM</strong> 强调的是性能，每次查询具有原子性,其执行速度比InnoDB类型更快，但是不提供事务支持。但是<strong>InnoDB</strong> 提供事务支持，外部键等高级数据库功能。 具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)的事务安全(transaction-safe (ACID compliant))型表。</li>
+<li><strong>是否支持外键：</strong> MyISAM不支持，而InnoDB支持。</li>
+<li><strong>是否支持MVCC</strong> ：仅 InnoDB 支持。应对高并发事务, MVCC比单纯的加锁更高效;MVCC只在 <code>READ COMMITTED</code> 和 <code>REPEATABLE READ</code> 两个隔离级别下工作;MVCC可以使用 乐观(optimistic)锁 和 悲观(pessimistic)锁来实现;各数据库中MVCC实现并不统一。推荐阅读：<a href="https://segmentfault.com/a/1190000012650596">MySQL-InnoDB-MVCC多版本并发控制</a></li>
+</ol>
+<h3 id="3-并发带来的问题"><a href="#3-并发带来的问题" class="headerlink" title="3.并发带来的问题"></a>3.并发带来的问题</h3><h4 id="1-脏读："><a href="#1-脏读：" class="headerlink" title="1.脏读："></a>1.脏读：</h4><p>读取一个修改但还未提交的数据</p>
+<h4 id="2-丢失修改"><a href="#2-丢失修改" class="headerlink" title="2.丢失修改"></a>2.丢失修改</h4><p>第一个事务修改了数据，第二个事务也修改了该数据，那么第一次修改就丢失了</p>
+<h4 id="3-不可重复读"><a href="#3-不可重复读" class="headerlink" title="3.不可重复读"></a>3.不可重复读</h4><p>指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</p>
+<h4 id="4-幻读"><a href="#4-幻读" class="headerlink" title="4.幻读"></a>4.幻读</h4><p>幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
+<p><strong>不可重复读和幻读区别：</strong></p>
+<p>不可重复读的重点是修改比如多次读取一条记录发现其中某些列的值被修改，幻读的重点在于新增或者删除比如多次读取一条记录发现记录增多或减少了。</p>
+<h3 id="4-锁机制与InnoDB锁算法"><a href="#4-锁机制与InnoDB锁算法" class="headerlink" title="4.锁机制与InnoDB锁算法"></a>4.锁机制与InnoDB锁算法</h3><p><strong>MyISAM和InnoDB存储引擎使用的锁：</strong></p>
+<ul>
+<li>MyISAM采用表级锁(table-level locking)。</li>
+<li>InnoDB支持行级锁(row-level locking)和表级锁,默认为行级锁</li>
+</ul>
+<p><strong>表级锁和行级锁对比：</strong></p>
+<ul>
+<li><strong>表级锁：</strong> MySQL中锁定 <strong>粒度最大</strong> 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，并发度最低，MyISAM和 InnoDB引擎都支持表级锁。</li>
+<li><strong>行级锁：</strong> MySQL中锁定 <strong>粒度最小</strong> 的一种锁，只针对当前操作的行进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。</li>
+</ul>
+<p>详细内容可以参考： MySQL锁机制简单了解一下：<a href="https://blog.csdn.net/qq_34337272/article/details/80611486">https://blog.csdn.net/qq_34337272/article/details/80611486</a></p>
+<p><strong>InnoDB存储引擎的锁的算法有三种：</strong></p>
+<ul>
+<li>Record lock：单个行记录上的锁</li>
+<li>Gap lock：间隙锁，锁定一个范围，不包括记录本身</li>
+<li>Next-key lock：record+gap 锁定一个范围，包含记录本身</li>
+</ul>
+<h3 id="5-分库分表之后-id-主键如何处理？"><a href="#5-分库分表之后-id-主键如何处理？" class="headerlink" title="5.分库分表之后,id 主键如何处理？"></a>5.分库分表之后,id 主键如何处理？</h3><p>因为要是分成多个表之后，每个表都是从 1 开始累加，这样是不对的，我们需要一个全局唯一的 id 来支持。</p>
+<p>生成全局 id 有下面这几种方式：</p>
+<ul>
+<li><strong>UUID</strong>：不适合作为主键，因为太长了，并且无序不可读，查询效率低。比较适合用于生成唯一的名字的标示比如文件的名字。</li>
+<li><strong>数据库自增 id</strong> : 两台数据库分别设置不同步长，生成不重复ID的策略来实现高可用。这种方式生成的 id 有序，但是需要独立部署数据库实例，成本高，还会有性能瓶颈。</li>
+<li><strong>利用 redis 生成 id :</strong> 性能比较好，灵活方便，不依赖于数据库。但是，引入了新的组件造成系统更加复杂，可用性降低，编码更加复杂，增加了系统成本。</li>
+<li><strong>Twitter的snowflake算法</strong> ：Github 地址：<a href="https://github.com/twitter-archive/snowflake%E3%80%82">https://github.com/twitter-archive/snowflake。</a></li>
+<li><strong>美团的<a href="https://tech.meituan.com/2017/04/21/mt-leaf.html">Leaf</a>分布式ID生成系统</strong> ：Leaf 是美团开源的分布式ID生成器，能保证全局唯一性、趋势递增、单调递增、信息安全，里面也提到了几种分布式方案的对比，但也需要依赖关系数据库、Zookeeper等中间件。感觉还不错。美团技术团队的一篇文章：<a href="https://tech.meituan.com/2017/04/21/mt-leaf.html">https://tech.meituan.com/2017/04/21/mt-leaf.html</a> 。</li>
+</ul>
+<h3 id="6-腾讯面试：一条SQL语句执行得很慢的原因有哪些？"><a href="#6-腾讯面试：一条SQL语句执行得很慢的原因有哪些？" class="headerlink" title="6.腾讯面试：一条SQL语句执行得很慢的原因有哪些？"></a>6.腾讯面试：一条SQL语句执行得很慢的原因有哪些？</h3><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485185&amp;idx=1&amp;sn=66ef08b4ab6af5757792223a83fc0d45&amp;chksm=cea248caf9d5c1dc72ec8a281ec16aa3ec3e8066dbb252e27362438a26c33fbe842b0e0adf47&amp;token=79317275&amp;lang=zh_CN#rd">https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485185&amp;idx=1&amp;sn=66ef08b4ab6af5757792223a83fc0d45&amp;chksm=cea248caf9d5c1dc72ec8a281ec16aa3ec3e8066dbb252e27362438a26c33fbe842b0e0adf47&amp;token=79317275&amp;lang=zh_CN#rd</a></p>
+<p>一个 SQL 执行的很慢，我们要分两种情况讨论：</p>
+<p><strong>1、大多数情况下很正常，偶尔很慢，则有如下原因</strong></p>
+<p>(1)、数据库在刷新脏页，例如 redo log 写满了需要同步到磁盘。</p>
+<p>(2)、执行的时候，遇到锁，如表锁、行锁。</p>
+<p><strong>2、这条 SQL 语句一直执行的很慢，则有如下原因。</strong></p>
+<p>(1)、没有用上索引：例如该字段没有索引；由于对字段进行运算、函数操作导致无法用索引。</p>
+<p>(2)、数据库选错了索引。</p>
+<h3 id="7-索引"><a href="#7-索引" class="headerlink" title="7.索引"></a>7.索引</h3><p><strong>索引是一种用于快速查询和检索数据的数据结构。常见的索引结构有: B 树， B+树和 Hash</strong></p>
+<p>索引优点：可以大大加快 数据的检索速度（大大减少的检索的数据量）, 这也是创建索引的最主要的原因。毕竟大部分系统的读请求总是大于写请求的。 另外，通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。</p>
+<p>索引的缺点：</p>
+<ol>
+<li><strong>创建索引和维护索引需要耗费许多时间</strong>：当对表中的数据进行增删改的时候，如果数据有索引，那么索引也需要动态的修改，会降低 SQL 执行效率。</li>
+<li><strong>占用物理存储空间</strong> ：索引需要使用物理文件存储，也会耗费一定空间。</li>
+</ol>
+<h4 id="B-树和-B-树区别"><a href="#B-树和-B-树区别" class="headerlink" title="B 树和 B+树区别"></a>B 树和 B+树区别</h4><ul>
+<li>B 树的所有节点既存放 键(key) 也存放 数据(data);而 B+树只有叶子节点存放 key 和 data，其他内节点只存放 key。</li>
+<li>B 树的叶子节点都是独立的;B+树的叶子节点有一条引用链指向与它相邻的叶子节点。</li>
+<li>B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。而 B+树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显。</li>
+</ul>
+<h3 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h3>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2021/04/22/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -17,6 +325,305 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>React学习记录</title>
+    <url>/2020/09/07/React%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、React安装"><a href="#一、React安装" class="headerlink" title="一、React安装"></a>一、React安装</h2><ul>
+<li><strong>react.min.js</strong> - React 的核心库</li>
+<li><strong>react-dom.min.js</strong> - 提供与 DOM 相关的功能</li>
+<li><strong>babel.min.js</strong> - Babel 可以将 ES6 代码转为 ES5 代码，这样我们就能在目前不支持 ES6 浏览器上执行 React 代码。Babel 内嵌了对 JSX 的支持。通过将 Babel 和 babel-sublime 包（package）一同使用可以让源码的语法渲染上升到一个全新的水平。</li>
+</ul>
+<h3 id="1-使用-create-react-app-快速构建-React-开发环境"><a href="#1-使用-create-react-app-快速构建-React-开发环境" class="headerlink" title="1.使用 create-react-app 快速构建 React 开发环境"></a>1.使用 create-react-app 快速构建 React 开发环境</h3><p>create-react-app 自动创建的项目是基于 Webpack + ES6 </p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$ npm install -g create-react-app</span><br><span class="line">$ create-react-app reactstudy</span><br><span class="line">$ cd reactstudy/</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
+
+<p>manifest.json 指定了开始页面 index.html，一切的开始都从这里开始，所以这个是代码执行的源头。</p>
+<h3 id="2-create-react-app-执行慢的解决方法"><a href="#2-create-react-app-执行慢的解决方法" class="headerlink" title="2.create-react-app 执行慢的解决方法"></a>2.create-react-app 执行慢的解决方法</h3><p>换成淘宝的资源</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$ npm config set registry https:<span class="comment">//registry.npm.taobao.org</span></span><br><span class="line">-- 配置后可通过下面方式来验证是否成功</span><br><span class="line">$ npm config get registry</span><br><span class="line">-- 或 npm info express</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、React-元素渲染"><a href="#二、React-元素渲染" class="headerlink" title="二、React 元素渲染"></a>二、React 元素渲染</h2><p>元素是构成 React 应用的最小单位，它用于描述屏幕上输出的内容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>将元素渲染到DOM中</p>
+<p>首先我们在一个 HTML 页面中添加一个 <strong>id=”example”</strong> 的 <strong><div></strong>:</p>
+<p>在此 div 中的所有内容都将由 React DOM 来管理，所以我们将其称为 “根” DOM 节点。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;;</span><br><span class="line">ReactDOM.render(    </span><br><span class="line">	element,</span><br><span class="line">    document.getElementById(&#39;example&#39;) </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、React-JSX"><a href="#三、React-JSX" class="headerlink" title="三、React   JSX"></a>三、React   JSX</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myDivElement &#x3D; &lt;div className&#x3D;&quot;foo&quot; &#x2F;&gt;;</span><br><span class="line">ReactDOM.render(myDivElement, document.getElementById(&#39;example&#39;));</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、React-组件"><a href="#四、React-组件" class="headerlink" title="四、React 组件"></a>四、React 组件</h2><h3 id="1-使用函数定义了一个组件"><a href="#1-使用函数定义了一个组件" class="headerlink" title="1.使用函数定义了一个组件"></a>1.使用函数定义了一个组件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function HelloMessage(props) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello World!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用-class-定义一个组件"><a href="#2-使用-class-定义一个组件" class="headerlink" title="2.使用 class 定义一个组件"></a>2.使用 class 定义一个组件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello World!&lt;&#x2F;h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>注意，原生 HTML 元素名以小写字母开头，而自定义的 React 类名以大写字母开头，比如 HelloMessage 不能写成 helloMessage。除此之外还需要注意组件类只能包含一个顶层标签，否则也会报错。</em></p>
+<p>如果我们需要向组件传递参数，可以使用 <strong>this.props</strong> 对象</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function HelloMessage(props) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello &#123;props.name&#125;!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const element &#x3D; &lt;HelloMessage name&#x3D;&quot;Runoob&quot;&#x2F;&gt;;</span><br><span class="line"> </span><br><span class="line">ReactDOM.render(</span><br><span class="line">    element,</span><br><span class="line">    document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、React-State-状态"><a href="#五、React-State-状态" class="headerlink" title="五、React State(状态)"></a>五、React State(状态)</h2><p>React 把组件看成是一个状态机（State Machines）。通过与用户的交互，实现不同状态，然后渲染 UI，让用户界面和数据保持一致。只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;现在是 &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Clock &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-将生命周期方法添加到类中"><a href="#1-将生命周期方法添加到类中" class="headerlink" title="1.将生命周期方法添加到类中"></a>1.将生命周期方法添加到类中</h3><p>在具有许多组件的应用程序中，在销毁时释放组件所占用的资源非常重要。每当 Clock 组件第一次加载到 DOM 中的时候，我们都想生成定时器，这在 React 中被称为<strong>挂载</strong>。同样，每当 Clock 生成的这个 DOM 被移除的时候，我们也会想要清除定时器，这在 React 中被称为<strong>卸载</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.timerID &#x3D; setInterval(</span><br><span class="line">      () &#x3D;&gt; this.tick(),</span><br><span class="line">      1000</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    clearInterval(this.timerID);</span><br><span class="line">  &#125;</span><br><span class="line">  tick() &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      date: new Date()</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;现在是 &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Clock &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码执行顺序：</strong></p>
+<ol>
+<li>当 <code>&lt;Clock /&gt;</code> 被传递给 <code>ReactDOM.render()</code> 时，React 调用 <code>Clock</code> 组件的构造函数。 由于 <code>Clock</code> 需要显示当前时间，所以使用包含当前时间的对象来初始化 <code>this.state</code> 。 我们稍后会更新此状态。</li>
+<li>React 然后调用 <code>Clock</code> 组件的 <code>render()</code> 方法。这是 React 了解屏幕上应该显示什么内容，然后 React 更新 DOM 以匹配 <code>Clock</code> 的渲染输出。</li>
+<li>当 <code>Clock</code> 的输出插入到 DOM 中时，React 调用 <code>componentDidMount()</code> 生命周期钩子。 在其中，<code>Clock</code> 组件要求浏览器设置一个定时器，每秒钟调用一次 <code>tick()</code>。</li>
+<li>浏览器每秒钟调用 <code>tick()</code> 方法。 在其中，<code>Clock</code> 组件通过使用包含当前时间的对象调用 <code>setState()</code> 来调度UI更新。 通过调用 <code>setState()</code> ，React 知道状态已经改变，并再次调用 <code>render()</code> 方法来确定屏幕上应当显示什么。 这一次，<code>render()</code> 方法中的 <code>this.state.date</code> 将不同，所以渲染输出将包含更新的时间，并相应地更新 DOM。</li>
+<li>一旦 <code>Clock</code> 组件被从 DOM 中移除，React 会调用 <code>componentWillUnmount()</code> 这个钩子函数，定时器也就会被清除。</li>
+</ol>
+<h2 id="六、React-Props"><a href="#六、React-Props" class="headerlink" title="六、React Props"></a>六、React Props</h2><p>state 和 props 主要的区别在于 <strong>props</strong> 是不可变的，而 state 可以根据与用户交互来改变。这就是为什么有些容器组件需要定义 state 来更新和修改数据。 而子组件只能通过 props 来传递数据。</p>
+<h3 id="1-State-和-Props"><a href="#1-State-和-Props" class="headerlink" title="1.State 和 Props"></a>1.State 和 Props</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class WebSite extends React.Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">      super();</span><br><span class="line"> </span><br><span class="line">      this.state &#x3D; &#123;</span><br><span class="line">        name: &quot;ConfidenceBoy&quot;,</span><br><span class="line">        site: &quot;https:&#x2F;&#x2F;www.handsomejie.cn&#x2F;&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Name name&#x3D;&#123;this.state.name&#125; &#x2F;&gt;</span><br><span class="line">        &lt;Link site&#x3D;&#123;this.state.site&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">class Name extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1&gt;&#123;this.props.name&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Link extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;a href&#x3D;&#123;this.props.site&#125;&gt;</span><br><span class="line">        &#123;this.props.site&#125;</span><br><span class="line">      &lt;&#x2F;a&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;WebSite &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、React-事件处理"><a href="#七、React-事件处理" class="headerlink" title="七、React 事件处理"></a>七、React 事件处理</h2><h3 id="1-事件处理"><a href="#1-事件处理" class="headerlink" title="1.事件处理"></a>1.事件处理</h3><p>React 元素的事件处理和 DOM 元素类似。但是有一点语法上的不同:</p>
+<ul>
+<li>React 事件绑定属性的命名采用驼峰式写法，而不是小写。</li>
+<li>如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM 元素的写法)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class LoggingButton extends React.Component &#123;</span><br><span class="line">  &#x2F;&#x2F; 这个语法确保了 &#96;this&#96; 绑定在  handleClick 中</span><br><span class="line">  &#x2F;&#x2F; 这里只是一个测试</span><br><span class="line">  handleClick &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;this is:&#39;, this);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;button onClick&#x3D;&#123;this.handleClick&#125;&gt;</span><br><span class="line">        Click me</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;向事件处理程序传递参数</span><br><span class="line">&lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.deleteRow(id, e)&#125;&gt;Delete Row&lt;&#x2F;button&gt;</span><br><span class="line">&lt;button onClick&#x3D;&#123;this.deleteRow.bind(this, id)&#125;&gt;Delete Row&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-条件渲染"><a href="#2-条件渲染" class="headerlink" title="2.条件渲染"></a>2.条件渲染</h3><p>创建一个 Greeting 组件，它会根据用户是否登录来显示其中之一：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Greeting(props) &#123;</span><br><span class="line">  const isLoggedIn &#x3D; props.isLoggedIn;</span><br><span class="line">  if (isLoggedIn) &#123;</span><br><span class="line">    return &lt;UserGreeting &#x2F;&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;GuestGreeting &#x2F;&gt;;</span><br><span class="line">&#125; </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &#x2F;&#x2F; 尝试修改 isLoggedIn&#x3D;&#123;true&#125;:</span><br><span class="line">  &lt;Greeting isLoggedIn&#x3D;&#123;false&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="与运算符-amp-amp"><a href="#与运算符-amp-amp" class="headerlink" title="与运算符 &amp;&amp;"></a>与运算符 &amp;&amp;</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Mailbox(props) &#123;</span><br><span class="line">  const unreadMessages &#x3D; props.unreadMessages;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Hello!&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;unreadMessages.length &gt; 0 &amp;&amp;</span><br><span class="line">        &lt;h2&gt;</span><br><span class="line">          您有 &#123;unreadMessages.length&#125; 条未读信息。</span><br><span class="line">        &lt;&#x2F;h2&gt;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const messages &#x3D; [&#39;React&#39;, &#39;Re: React&#39;, &#39;Re:Re: React&#39;];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Mailbox unreadMessages&#x3D;&#123;messages&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在 JavaScript 中，<strong>true &amp;&amp; expression</strong> 总是返回 <strong>expression</strong>，而 <strong>false &amp;&amp; expression</strong> 总是返回 <strong>false</strong>。因此，如果条件是 <strong>true</strong>，**&amp;&amp;** 右侧的元素就会被渲染，如果是 <strong>false</strong>，React 会忽略并跳过它。</p>
+<h4 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">condition ? true : false。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  const isLoggedIn &#x3D; this.state.isLoggedIn;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;isLoggedIn ? (</span><br><span class="line">        &lt;LogoutButton onClick&#x3D;&#123;this.handleLogoutClick&#125; &#x2F;&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;LoginButton onClick&#x3D;&#123;this.handleLoginClick&#125; &#x2F;&gt;</span><br><span class="line">      )&#125; </span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、React-列表-amp-Keys"><a href="#八、React-列表-amp-Keys" class="headerlink" title="八、React 列表 &amp; Keys"></a>八、React 列表 &amp; Keys</h2><p>组件接收数组参数，每个列表元素分配一个 key。Keys 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function ListItem(props) &#123;</span><br><span class="line">  &#x2F;&#x2F; 对啦！这里不需要指定key:</span><br><span class="line">  return &lt;li&gt;&#123;props.value&#125;&lt;&#x2F;li&gt;;</span><br><span class="line">&#125;</span><br><span class="line">function NumberList(props) &#123;</span><br><span class="line">  const numbers &#x3D; props.numbers;</span><br><span class="line">  const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">    &#x2F;&#x2F; 又对啦！key应该在数组的上下文中被指定</span><br><span class="line">    &lt;ListItem key&#x3D;&#123;number.toString()&#125;</span><br><span class="line">              value&#x3D;&#123;number&#125; &#x2F;&gt;</span><br><span class="line">  );</span><br><span class="line">  return (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;listItems&#125;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;NumberList numbers&#x3D;&#123;numbers&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、React-组件生命周期及AJAX"><a href="#九、React-组件生命周期及AJAX" class="headerlink" title="九、React 组件生命周期及AJAX"></a>九、React 组件生命周期及AJAX</h2><h3 id="1-生命周期"><a href="#1-生命周期" class="headerlink" title="1.生命周期"></a>1.生命周期</h3><p>组件的生命周期可分成三个状态：</p>
+<ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+<p>生命周期的方法有：</p>
+<ul>
+<li><strong>componentWillMount</strong> 在渲染前调用,在客户端也在服务端。</li>
+<li><strong>componentDidMount</strong> : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异步操作阻塞UI)。</li>
+<li><strong>componentWillReceiveProps</strong> 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</li>
+<li><strong>shouldComponentUpdate</strong> 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。<br>可以在你确认不需要更新组件时使用。</li>
+<li><strong>componentWillUpdate</strong>在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</li>
+<li><strong>componentDidUpdate</strong> 在组件完成更新后立即调用。在初始化时不会被调用。</li>
+<li><strong>componentWillUnmount</strong>在组件从 DOM 中移除之前立刻被调用。</li>
+</ul>
+<h3 id="2-AJAX"><a href="#2-AJAX" class="headerlink" title="2.AJAX"></a>2.AJAX</h3><p>React 组件的数据可以通过 componentDidMount 方法中的 Ajax 来获取，当从服务端获取数据时可以将数据存储在 state 中，再用 this.setState 方法重新渲染 UI。当使用异步加载数据时，在组件卸载前使用 componentWillUnmount 来取消未完成的请求。</p>
+]]></content>
+      <categories>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo常用命令</title>
+    <url>/2021/01/06/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-简写指令"><a href="#1-简写指令" class="headerlink" title="1.简写指令:"></a>1.简写指令:</h2><p> <code>hexo n</code> “我的文章” 新建文章<br> <code>hexo p</code> 等价于 <code>hexo publish</code><br> <code>hexo g</code> 等价于 <code>hexo generate</code><br> <code>hexo s</code>等价于 <code>hexo server</code><br> <code>hexo d</code> 等价于 <code>hexo deploy</code><br> <code>hexo deploy -g</code>  等价于 <code>hexo deploy --generate</code><br> <code>hexo generate -d</code>等价于`hexo generate –deploy</p>
+<p><strong>注: hexo  clean 没有 简写,  git –version 没有简写</strong></p>
+<h2 id="2-指令说明"><a href="#2-指令说明" class="headerlink" title="2.指令说明:"></a>2.指令说明:</h2><p> <code>hexo server</code>    #Hexo 会监视文件变动并自动更新，除修改<strong>站点配置文件</strong>外,无须重启服务器,直接刷新网页即可生效。<br> <code>hexo server -s</code> #以静态模式启动<br> <code>hexo server -p 5000</code> #更改访问端口   (默认端口为4000，’ctrl + c’关闭server)<br> <code>hexo server -i IP地址</code> #自定义 IP<br> <code>hexo clean</code> #清除缓存  ,网页正常情况下可以忽略此条命令,执行该指令后,会删掉站点根目录下的public文件夹<br> <code>hexo g</code> #生成静态网页  (执行 <code>$ hexo g</code>后会在站点根目录下生成public文件夹, hexo会将”/blog/source/“   下面的.md后缀的文件编译为.html后缀的文件,存放在”/blog/public/ “   路径下)<br> <code>hexo d</code> #将本地数据部署到远端服务器(如github)<br> <code>hexo init 文件夹名称</code> #初始化XX文件夹名称<br> <code>npm update hexo -g</code>#升级<br> <code>npm install hexo -g</code>#安装<br> <code>node-v</code>          #查看node.js版本号<br> <code>npm -v</code>        #查看npm版本号<br> <code>git --version</code>  #查看git版本号<br> <code>hexo -v</code>      #查看hexo版本号</p>
+<p><code>hexo publish [layout] &lt;title&gt;</code>   #通过 <code>publish</code> 命令将草稿移动到 <code>source/_posts</code> 文件夹,如:<code>$ hexo publish [layout] &lt;title&gt;</code>,草稿默认是不会显示在页面中的，可在执行时加上 <code>--draft</code> 参数，或是把 <code>render_drafts</code> 参数设为 <code>true</code>来预览草稿。</p>
+<p><code>hexo new aaa &quot;bbb&quot;</code>  # 新建一篇文章,文章名称和标题分别为bbb.md 和 bbb.   文章采用aaa布局,  此时会在站点根目录下的—-&gt;source—–&gt;_post文件夹下生成bbb.md文件,  bbb.md文件的顶部(—–分割线上方区域,也称作Front matter区),生成</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">layout : aaa&#96;</span><br><span class="line"> &#96;title:&#96;</span><br><span class="line"> &#96;date:</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Tools</tag>
+        <tag>常用命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git学习记录</title>
+    <url>/2020/09/07/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-git简介"><a href="#1-git简介" class="headerlink" title="1.git简介"></a>1.git简介</h2><p>分布式版本控制系统  </p>
+<h2 id="2-在-Git环境搭建（windows）"><a href="#2-在-Git环境搭建（windows）" class="headerlink" title="2.在  Git环境搭建（windows）"></a>2.在  Git环境搭建（windows）</h2><p>安装完成后配置自己的信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;email@example.com &quot;</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="（1）创建版本库"><a href="#（1）创建版本库" class="headerlink" title="（1）创建版本库"></a>（1）创建版本库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ <span class="built_in">cd</span> learngit</span><br><span class="line">$ <span class="built_in">pwd</span>  </span><br></pre></td></tr></table></figure>
+
+<p>通过 git init 命令把这个目录变成 Git 可以管理的仓库：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/michael/learngit/.git/  </span><br></pre></td></tr></table></figure>
+
+<p>注意编译软件的选择</p>
+<h3 id="（2）把文件添加到版本库"><a href="#（2）把文件添加到版本库" class="headerlink" title="（2）把文件添加到版本库"></a>（2）把文件添加到版本库</h3><p>第一步，用命令 git add 告诉 Git，把文件添加到仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt  </span><br></pre></td></tr></table></figure>
+
+<p>第二步，用命令 git commit 告诉 Git，把文件提交到仓库：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;wrote a readme file&quot;</span></span><br><span class="line">[master (root-commit) cb926e7] wrote a readme file</span><br><span class="line">1 file changed, 2 insertions(+)</span><br><span class="line">create mode 100644 readme.txt  </span><br></pre></td></tr></table></figure>
+
+<h2 id="3-版本控制"><a href="#3-版本控制" class="headerlink" title="3.版本控制"></a>3.版本控制</h2><h3 id="（1）仓库状态"><a href="#（1）仓库状态" class="headerlink" title="（1）仓库状态"></a>（1）仓库状态</h3><p> git status查看当前仓库里的文件状态:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">\<span class="comment"># On branch master</span></span><br><span class="line">\<span class="comment"># Changes not staged for commit:</span></span><br><span class="line">\<span class="comment"># (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span></span><br><span class="line">\<span class="comment"># (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span></span><br><span class="line">\<span class="comment">#</span></span><br><span class="line">\<span class="comment"># modified: readme.txt</span></span><br><span class="line">\<span class="comment">#</span></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)  </span><br></pre></td></tr></table></figure>
+
+<p>查看修改了哪些内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff 文件名</span><br></pre></td></tr></table></figure>
+
+<p>查看git日志</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span>  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）版本回退"><a href="#（2）版本回退" class="headerlink" title="（2）版本回退"></a>（2）版本回退</h3><p>在 Git 中，用 HEAD 表示当前版本，也就是最新的提交 3628164…882e1e0 （注意我的提交 ID 和你的肯定不一样），上一个版本就是 HEAD^ ，上上一个版本就是 HEAD^^ ，当然往上 100 个版本写 100 个 ^ 比较容易数不过来，所以写成 HEAD~100 。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at ea34578 add distributed  </span><br></pre></td></tr></table></figure>
+
+<p>Git 提供了一个命令 git reflog 用来记录你的每一次命令：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">ea34578 HEAD@&#123;0&#125;: reset: moving to HEAD^</span><br><span class="line">3628164 HEAD@&#123;1&#125;: commit: append GPL</span><br><span class="line">ea34578 HEAD@&#123;2&#125;: commit: add distributed</span><br><span class="line">cb926e7 HEAD@&#123;3&#125;: commit (initial): wrote a readme file  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）工作区和暂存区"><a href="#（3）工作区和暂存区" class="headerlink" title="（3）工作区和暂存区"></a>（3）工作区和暂存区</h3><p>我们把文件往 Git 版本库里添加的时候，是分两步执行的：  </p>
+<p>第一步是用 git add 把文件添加进去，实际上就是把文件修改添加到暂存区；<br>第二步是用 git commit 提交更改，实际上就是把暂存区的所有内容提交到当前分支。  </p>
+<p><img src= "/img/loading.gif" data-lazy-src="/img/article/git_workspace_image.png" alt="avatar"></p>
+<p>git checkout – file 可以丢弃工作区的修改：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -- readme.txt  </span><br></pre></td></tr></table></figure>
+
+<p>git checkout – file 命令中的–很重要，没有–，就变成了“创建一个新分支”的命令 。 </p>
+<p>git reset HEAD file 可以把暂存区的修改撤销掉（unstage），重新放回工作区：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset HEAD readme.txt  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）删除文件"><a href="#（4）删除文件" class="headerlink" title="（4）删除文件"></a>（4）删除文件</h3><p>确实要从版本库中删除该文件，那就用命令 git rm 删掉，并且 git commit ：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rm test.txt</span><br><span class="line">rm <span class="string">&#x27;test.txt&#x27;</span></span><br><span class="line">$ git commit -m <span class="string">&quot;remove test.txt&quot;</span></span><br><span class="line">[master d17efd8] remove test.txt</span><br><span class="line">1 file changed, 1 deletion(-)</span><br><span class="line">delete mode 100644 test.txt  </span><br></pre></td></tr></table></figure>
+
+<p>如果删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本 ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -- test.txt  </span><br></pre></td></tr></table></figure>
+
+<h2 id="4-分支管理"><a href="#4-分支管理" class="headerlink" title="4.分支管理"></a>4.分支管理</h2><h3 id="（1）创建与合并分支"><a href="#（1）创建与合并分支" class="headerlink" title="（1）创建与合并分支"></a>（1）创建与合并分支</h3><p>创建 dev 分支，然后切换到 dev 分支：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -b dev</span><br><span class="line">Switched to a new branch <span class="string">&#x27;dev&#x27;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>git checkout 命令加上 -b 参数表示创建并切换，相当于以下两条命令：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch dev</span><br><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>然后，用 git branch 命令查看当前分支： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> $ git branch</span><br><span class="line">\* dev</span><br><span class="line">master  </span><br></pre></td></tr></table></figure>
+
+<p>把 dev 分支的工作成果合并到 master 分支上：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge dev</span><br><span class="line">Updating d17efd8..fec145a</span><br><span class="line">Fast-forward</span><br><span class="line">readme.txt | 1 +</span><br><span class="line">1 file changed, 1 insertion(+)  </span><br></pre></td></tr></table></figure>
+
+<p>合并完成后，就可以放心地删除 dev 分支了：  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch -d dev</span><br><span class="line">Deleted branch dev (was fec145a).  </span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）小结"><a href="#（2）小结" class="headerlink" title="（2）小结"></a>（2）小结</h3><div class="note primary no-icon">
+            <p>Git 鼓励大量使用分支：<br>查看分支：git branch<br>创建分支：git branch 分支名<br>切换分支：git checkout 分支名<br>创建+切换分支：git checkout -b<br>合并某分支到当前分支：git merge<br>删除分支：git branch -d<br>当 Git 无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。用 git log –graph 命令可以看到分支合并图。  </p>
+          </div>]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringIoc容器设计及实现</title>
+    <url>/2020/08/31/SpringIoc%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
+            <p>spring 的核心理念是Ioc(控制反转)和AOP(面向切面编程)</p>
+          </div>
+
+<h3 id="一、springIoc容器的设计"><a href="#一、springIoc容器的设计" class="headerlink" title="一、springIoc容器的设计"></a>一、springIoc容器的设计</h3><h4 id="1-容器的设计"><a href="#1-容器的设计" class="headerlink" title="1.容器的设计"></a>1.容器的设计</h4><div class="note primary no-icon">
+            <p>（1）BeanFactory<br>​（2）ApplicationContext(BeanFactory的子接口)</p>
+          </div>
+
+<p>​    </p>
+<h4 id="2-容器的初始化和依赖注入"><a href="#2-容器的初始化和依赖注入" class="headerlink" title="2.容器的初始化和依赖注入"></a>2.容器的初始化和依赖注入</h4><p>Bean定义到IoC容器中3种方式</p>
+<div class="note primary no-icon">
+            <p>​    （1）Resourse定位    资源定位，常使用注解方式<br>​    （2）BeanDefinition载入<br>​    （3）BeanDefinition注册</p>
+          </div>
+
+<h4 id="3-SpringBean的周期"><a href="#3-SpringBean的周期" class="headerlink" title="3.SpringBean的周期"></a>3.SpringBean的周期</h4><p>从容器初始化到销毁的过程</p>
+<h3 id="二、装配SpringBean"><a href="#二、装配SpringBean" class="headerlink" title="二、装配SpringBean"></a>二、装配SpringBean</h3><h4 id="1-3种装备方式"><a href="#1-3种装备方式" class="headerlink" title="1.    3种装备方式"></a>1.    3种装备方式</h4><div class="note primary no-icon">
+            <p>​    （1）构造器注入<br>​    （2）setter注入（主流方式）<br>​    （3）接口注入</p>
+          </div>
+
+
+
+
+
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>spring</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>spring</tag>
+        <tag>SpringIoc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shiro框架学习</title>
+    <url>/2021/01/06/shiro%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-权限的管理"><a href="#1-权限的管理" class="headerlink" title="1.权限的管理"></a>1.权限的管理</h3><p>权限管理实现<code>对用户访问系统的控制</code>，按照安全规则或者<a href="http://baike.baidu.com/view/160028.htm">安全策略</a>控制用户可以访问而且只能访问自己被授权的资源。</p>
+<p>权限管理核心：<strong>身份认证+授权</strong>，对于需要访问控制的资源用户首先经过身份认证，认证通过后用户具有该资源的访问权限方可访问。</p>
+<h3 id="2-shiro的核心架构"><a href="#2-shiro的核心架构" class="headerlink" title="2.shiro的核心架构"></a>2.shiro的核心架构</h3><h4 id="2-1-Subject"><a href="#2-1-Subject" class="headerlink" title="2.1 Subject"></a>2.1 Subject</h4><p><code>Subject即主体</code>，外部应用与subject进行交互，subject记录了当前操作用户，将用户的概念理解为当前操作的主体，可能是一个通过浏览器请求的用户，也可能是一个运行的程序。    Subject在shiro中是一个接口，接口中定义了很多认证授相关的方法，<strong>外部程序通过subject进行认证授权，而subject是通过SecurityManager安全管理器进行认证授权</strong></p>
+<h3 id="2-2-SecurityManager"><a href="#2-2-SecurityManager" class="headerlink" title="2.2 SecurityManager"></a>2.2 SecurityManager</h3><p><code>SecurityManager即安全管理器</code>，对全部的subject进行安全管理，它是shiro的核心，负责对所有的subject进行安全管理。通过SecurityManager可以完成subject的认证、授权等，实质上<strong>SecurityManager是通过Authenticator进行认证，通过Authorizer进行授权</strong>，通过SessionManager进行会话管理等。</p>
+<p><code>SecurityManager是一个接口，继承了Authenticator, Authorizer, SessionManager这三个接口。</code></p>
+<h3 id="2-3-Authenticator"><a href="#2-3-Authenticator" class="headerlink" title="2.3 Authenticator"></a>2.3 Authenticator</h3><p><code>Authenticator即认证器</code>，对用户身份进行认证，Authenticator是一个接口，shiro提供ModularRealmAuthenticator实现类，通过ModularRealmAuthenticator基本上可以满足大多数需求，也可以自定义认证器。</p>
+<h3 id="2-4-Authorizer"><a href="#2-4-Authorizer" class="headerlink" title="2.4 Authorizer"></a>2.4 Authorizer</h3><p><code>Authorizer即授权器</code>，用户通过认证器认证通过，在访问功能时需要通过授权器判断用户是否有此功能的操作权限。</p>
+<h3 id="2-5-Realm"><a href="#2-5-Realm" class="headerlink" title="2.5 Realm"></a>2.5 Realm</h3><p><code>Realm即领域</code>，相当于datasource数据源，securityManager进行安全认证需要通过Realm获取用户权限数据，比如：如果用户身份数据在数据库那么realm就需要从数据库获取用户身份信息。</p>
+<ul>
+<li>​    <strong>注意：不要把realm理解成只是从数据源取数据，在realm中还有认证授权校验的相关的代码。</strong></li>
+</ul>
+<h3 id="2-6-SessionManager"><a href="#2-6-SessionManager" class="headerlink" title="2.6 SessionManager"></a>2.6 SessionManager</h3><p><code>sessionManager即会话管理</code>，shiro框架定义了一套会话管理，它不依赖web容器的session，所以shiro可以使用在非web应用上，也可以将分布式应用的会话集中在一点管理，此特性可使它实现单点登录。</p>
+<h3 id="2-7-SessionDAO"><a href="#2-7-SessionDAO" class="headerlink" title="2.7 SessionDAO"></a>2.7 SessionDAO</h3><p><code>SessionDAO即会话dao</code>，是对session会话操作的一套接口，比如要将session存储到数据库，可以通过jdbc将会话存储到数据库。</p>
+<h3 id="2-8-CacheManager"><a href="#2-8-CacheManager" class="headerlink" title="2.8 CacheManager"></a>2.8 CacheManager</h3><p><code>CacheManager即缓存管理</code>，将用户权限数据存储在缓存，这样可以提高性能。</p>
+<h3 id="2-9-Cryptography"><a href="#2-9-Cryptography" class="headerlink" title="2.9 Cryptography"></a>2.9 Cryptography</h3><p>​    <code>Cryptography即密码管理</code>，shiro提供了一套加密/解密的组件，方便开发。比如提供常用的散列、加/解密等功能。</p>
+<hr>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h3>]]></content>
+      <categories>
+        <category>Shiro</category>
+      </categories>
+      <tags>
+        <tag>Shiro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL主从复制</title>
+    <url>/2021/07/13/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-什么是主从复制"><a href="#1-什么是主从复制" class="headerlink" title="1.什么是主从复制"></a>1.什么是主从复制</h3><p>用来建立一个和主数据库完全一样的数据库环境，称为从数据库；主数据库一般是准实时的业务数据库</p>
+<h3 id="2-主从复制的作用"><a href="#2-主从复制的作用" class="headerlink" title="2.主从复制的作用"></a>2.主从复制的作用</h3><p>1、做数据的热备，作为后备数据库，主数据库服务器故障后，可切换到从数据库继续工作，避免数据丢失。<br>2、架构的扩展。业务量越来越大，I/O访问频率过高，单机无法满足，此时做多库的存储，降低磁盘I/O访问的频率，提高单个机器的I/O性能。<br>3、读写分离，使数据库能支撑更大的并发。在报表中尤其重要。由于部分报表sql语句非常的慢，导致锁表，影响前台服务。如果前台使用master，报表使用slave，那么报表sql将不会造成前台锁，保证了前台速度。</p>
+<h3 id="3-主从复制原理（重点）"><a href="#3-主从复制原理（重点）" class="headerlink" title="3.主从复制原理（重点）"></a>3.主从复制原理（重点）</h3><p>1.数据库有个binlog二进制文件，记录了所有sql语句</p>
+<p>2.我们的目标就是把主数据库的binlog文件的sql的语句复制过来</p>
+<p>3.让其在从数据库的realylog重做日志文件再执行一次这些sql语句即可</p>
+<p>下面的主从配置就是围绕这个原理配置，具体需要三个线程来操作</p>
+<p>（1）binlog输出线程         每当有从库连接到主库的时候，<strong>主库都会创建一个线程然后发送binlog内容到从库。</strong></p>
+<p>在从库里，当复制开始的时候，从库就会<strong>创建两个线程</strong>进行处理：</p>
+<p>（2）从库I/O线程        当START SLAVE语句在从库开始执行之后，从库创建一个I/O线程，<strong>该线程连接到主库并请求主库发送binlog里面的更新记录到从库上</strong>。从库I/O线程读取主库的binlog输出线程发送的更新并拷贝这些更新到本地文件，其中包括relay log文件。</p>
+<p>（3）从库创建一个SQL线程        <strong>这个线程读取从库I/O线程写到relay log的更新事件并执行。</strong></p>
+<p>对于每一个主从复制的连接，都有三个线程。拥有多个从库的主库为每一个连接到主库的从库创建一个binlog输出线程，每一个从库都有它自己的I/O线程和SQL线程。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://img-blog.csdnimg.cn/20210203182146587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mjc1NDk3MQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="4-主从复制存在的一些问题"><a href="#4-主从复制存在的一些问题" class="headerlink" title="4.主从复制存在的一些问题"></a>4.主从复制存在的一些问题</h3><ol>
+<li>负载均衡，由于复制的时间差，不能保证同步读，而且写仍然单点，没法多点写，我对这个理解就是半吊子的读写均衡。</li>
+<li>容灾，基本都是有损容灾，因为数据不同步，谁用谁知道，半吊子的容灾。</li>
+</ol>
+<h3 id="5-从数据库的读的延迟问题了解吗？如何解决？"><a href="#5-从数据库的读的延迟问题了解吗？如何解决？" class="headerlink" title="5.从数据库的读的延迟问题了解吗？如何解决？"></a>5.从数据库的读的延迟问题了解吗？如何解决？</h3><p>原因：当主库的TPS并发较高时，产生的DDL数量超过slave一个sql线程所能承受的范围，那么延时就产生了，当然还有就是可能与slave的大型query语句产生了锁等待，还有网络延迟。</p>
+<p>谈到MySQL数据库主从同步延迟原理，得从mysql的数据库主从复制原理说起，mysql的主从复制都是单线程的操作，主库对所有DDL和DML产生binlog，binlog是顺序写，所以效率很高；slave的Slave_IO_Running线程会到主库取日志，效率会比较高，slave的Slave_SQL_Running线程将主库的DDL和DML操作都在slave实施。<strong>DML和DDL的IO操作是随机的，不是顺序的，</strong>因此成本会很高，还可能是slave上的其他查询产生lock争用，由于Slave_SQL_Running也是单线程的，所以一个DDL卡主了，需要执行10分钟，那么所有之后的DDL会等待这个DDL执行完才会继续执行，这就导致了延时。有朋友会问：“主库上那个相同的DDL也需要执行10分，为什么slave会延时？”，答案是master可以并发，Slave_SQL_Running线程却不可以。</p>
+<p><strong>常见原因：Master负载过高、Slave负载过高、网络延迟、机器性能太低、MySQL配置不合理。</strong></p>
+<p><strong>解决办法：</strong></p>
+<p>（1）最简单的减少slave同步延时的方案就是在架构上做优化，尽量让主库的DDL快速执行。还有就是主库是写，对数据安全性较高，而slave则不需要这么高的数据安全，完全可以讲sync_binlog设置为0或者关闭binlog，innodb_flushlog也可以设置为0来提高sql的执行效率。另外就是使用比主库更好的硬件设备作为slave。</p>
+<p>（2）数据放入缓存中，更新数据库后，在预期可能马上用到的情况下，主动刷新缓存-&gt;(Redis的角度)</p>
+<p>（3）对于比较重要且必须实时的数据，比如用户刚换密码，所以在这种需要读取实时数据的时候最好从 Master 直接读取，避免 Slaves 数据滞后现象发生。</p>
+<h3 id="6-主服务器挂了怎么办？"><a href="#6-主服务器挂了怎么办？" class="headerlink" title="6.主服务器挂了怎么办？"></a>6.主服务器挂了怎么办？</h3><p>Mysql主库宕机情况分类：</p>
+<p>1.硬件问题，(服务器、ecs、虚拟主机等等)宕机</p>
+<p>硬件问题我们可以查看IDC巡检记录，或通过远程控制卡查看硬件运行状态，根据事实情况就行硬件故障报修进行处理。</p>
+<p>2.service问题，Mysql宕机，服务异常，端口异常等</p>
+<p>1)首先要做的就是判断是否影响业务，是否需要切库，保证业务运行时首要任务</p>
+<p>2)如果此时需要切从库，按照如下步骤进行：</p>
+<p>1&gt; 先查看MySQL 从库状态</p>
+<p>**解决的思路:**在我看来都应该围绕bin log日志和从服务器上的relay log 等文件还有就是数据的备份。所以说做好数据备份才是王道，这样能最大程度上保证数据不会丢失。</p>
+<h3 id="7-读写分离的实现"><a href="#7-读写分离的实现" class="headerlink" title="7.读写分离的实现"></a>7.读写分离的实现</h3><p>为了减轻数据库的压力，一般会进行数据库的读写分离，</p>
+<p>实现方法一是通过分析sql语句是insert/select/update/delete中的哪一种，从而对应选择主从。<br>二是通过拦截方法名称的方式来决定主从的，如：save*()、insert*() 形式的方法使用master库，select()开头的使用slave库。</p>
+<p>虽然大多数都是从程序里直接实现读写分离的，但对于分布式的部署和水平和垂直分割，一些代理的类似中间件的软件还是挺实用的，如 MySQL Proxy比较。</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>主从复制</tag>
+      </tags>
   </entry>
   <entry>
     <title>LeetCode刷题总结</title>
@@ -179,613 +786,6 @@
       <tags>
         <tag>LeetCode</tag>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL主从复制</title>
-    <url>/2021/07/13/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-什么是主从复制"><a href="#1-什么是主从复制" class="headerlink" title="1.什么是主从复制"></a>1.什么是主从复制</h3><p>用来建立一个和主数据库完全一样的数据库环境，称为从数据库；主数据库一般是准实时的业务数据库</p>
-<h3 id="2-主从复制的作用"><a href="#2-主从复制的作用" class="headerlink" title="2.主从复制的作用"></a>2.主从复制的作用</h3><p>1、做数据的热备，作为后备数据库，主数据库服务器故障后，可切换到从数据库继续工作，避免数据丢失。<br>2、架构的扩展。业务量越来越大，I/O访问频率过高，单机无法满足，此时做多库的存储，降低磁盘I/O访问的频率，提高单个机器的I/O性能。<br>3、读写分离，使数据库能支撑更大的并发。在报表中尤其重要。由于部分报表sql语句非常的慢，导致锁表，影响前台服务。如果前台使用master，报表使用slave，那么报表sql将不会造成前台锁，保证了前台速度。</p>
-<h3 id="3-主从复制原理（重点）"><a href="#3-主从复制原理（重点）" class="headerlink" title="3.主从复制原理（重点）"></a>3.主从复制原理（重点）</h3><p>1.数据库有个binlog二进制文件，记录了所有sql语句</p>
-<p>2.我们的目标就是把主数据库的binlog文件的sql的语句复制过来</p>
-<p>3.让其在从数据库的realylog重做日志文件再执行一次这些sql语句即可</p>
-<p>下面的主从配置就是围绕这个原理配置，具体需要三个线程来操作</p>
-<p>（1）binlog输出线程         每当有从库连接到主库的时候，<strong>主库都会创建一个线程然后发送binlog内容到从库。</strong></p>
-<p>在从库里，当复制开始的时候，从库就会<strong>创建两个线程</strong>进行处理：</p>
-<p>（2）从库I/O线程        当START SLAVE语句在从库开始执行之后，从库创建一个I/O线程，<strong>该线程连接到主库并请求主库发送binlog里面的更新记录到从库上</strong>。从库I/O线程读取主库的binlog输出线程发送的更新并拷贝这些更新到本地文件，其中包括relay log文件。</p>
-<p>（3）从库创建一个SQL线程        <strong>这个线程读取从库I/O线程写到relay log的更新事件并执行。</strong></p>
-<p>对于每一个主从复制的连接，都有三个线程。拥有多个从库的主库为每一个连接到主库的从库创建一个binlog输出线程，每一个从库都有它自己的I/O线程和SQL线程。</p>
-<p><img src= "/img/loading.gif" data-lazy-src="https://img-blog.csdnimg.cn/20210203182146587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mjc1NDk3MQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="4-主从复制存在的一些问题"><a href="#4-主从复制存在的一些问题" class="headerlink" title="4.主从复制存在的一些问题"></a>4.主从复制存在的一些问题</h3><ol>
-<li>负载均衡，由于复制的时间差，不能保证同步读，而且写仍然单点，没法多点写，我对这个理解就是半吊子的读写均衡。</li>
-<li>容灾，基本都是有损容灾，因为数据不同步，谁用谁知道，半吊子的容灾。</li>
-</ol>
-<h3 id="5-从数据库的读的延迟问题了解吗？如何解决？"><a href="#5-从数据库的读的延迟问题了解吗？如何解决？" class="headerlink" title="5.从数据库的读的延迟问题了解吗？如何解决？"></a>5.从数据库的读的延迟问题了解吗？如何解决？</h3><p>原因：当主库的TPS并发较高时，产生的DDL数量超过slave一个sql线程所能承受的范围，那么延时就产生了，当然还有就是可能与slave的大型query语句产生了锁等待，还有网络延迟。</p>
-<p>谈到MySQL数据库主从同步延迟原理，得从mysql的数据库主从复制原理说起，mysql的主从复制都是单线程的操作，主库对所有DDL和DML产生binlog，binlog是顺序写，所以效率很高；slave的Slave_IO_Running线程会到主库取日志，效率会比较高，slave的Slave_SQL_Running线程将主库的DDL和DML操作都在slave实施。<strong>DML和DDL的IO操作是随机的，不是顺序的，</strong>因此成本会很高，还可能是slave上的其他查询产生lock争用，由于Slave_SQL_Running也是单线程的，所以一个DDL卡主了，需要执行10分钟，那么所有之后的DDL会等待这个DDL执行完才会继续执行，这就导致了延时。有朋友会问：“主库上那个相同的DDL也需要执行10分，为什么slave会延时？”，答案是master可以并发，Slave_SQL_Running线程却不可以。</p>
-<p><strong>常见原因：Master负载过高、Slave负载过高、网络延迟、机器性能太低、MySQL配置不合理。</strong></p>
-<p><strong>解决办法：</strong></p>
-<p>（1）最简单的减少slave同步延时的方案就是在架构上做优化，尽量让主库的DDL快速执行。还有就是主库是写，对数据安全性较高，而slave则不需要这么高的数据安全，完全可以讲sync_binlog设置为0或者关闭binlog，innodb_flushlog也可以设置为0来提高sql的执行效率。另外就是使用比主库更好的硬件设备作为slave。</p>
-<p>（2）数据放入缓存中，更新数据库后，在预期可能马上用到的情况下，主动刷新缓存-&gt;(Redis的角度)</p>
-<p>（3）对于比较重要且必须实时的数据，比如用户刚换密码，所以在这种需要读取实时数据的时候最好从 Master 直接读取，避免 Slaves 数据滞后现象发生。</p>
-<h3 id="6-主服务器挂了怎么办？"><a href="#6-主服务器挂了怎么办？" class="headerlink" title="6.主服务器挂了怎么办？"></a>6.主服务器挂了怎么办？</h3><p>Mysql主库宕机情况分类：</p>
-<p>1.硬件问题，(服务器、ecs、虚拟主机等等)宕机</p>
-<p>硬件问题我们可以查看IDC巡检记录，或通过远程控制卡查看硬件运行状态，根据事实情况就行硬件故障报修进行处理。</p>
-<p>2.service问题，Mysql宕机，服务异常，端口异常等</p>
-<p>1)首先要做的就是判断是否影响业务，是否需要切库，保证业务运行时首要任务</p>
-<p>2)如果此时需要切从库，按照如下步骤进行：</p>
-<p>1&gt; 先查看MySQL 从库状态</p>
-<p>**解决的思路:**在我看来都应该围绕bin log日志和从服务器上的relay log 等文件还有就是数据的备份。所以说做好数据备份才是王道，这样能最大程度上保证数据不会丢失。</p>
-<h3 id="7-读写分离的实现"><a href="#7-读写分离的实现" class="headerlink" title="7.读写分离的实现"></a>7.读写分离的实现</h3><p>为了减轻数据库的压力，一般会进行数据库的读写分离，</p>
-<p>实现方法一是通过分析sql语句是insert/select/update/delete中的哪一种，从而对应选择主从。<br>二是通过拦截方法名称的方式来决定主从的，如：save*()、insert*() 形式的方法使用master库，select()开头的使用slave库。</p>
-<p>虽然大多数都是从程序里直接实现读写分离的，但对于分布式的部署和水平和垂直分割，一些代理的类似中间件的软件还是挺实用的，如 MySQL Proxy比较。</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>主从复制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JWT实战总结</title>
-    <url>/2021/07/13/JWT%E5%AE%9E%E6%88%98%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近由于我们项目接入的学校越来越多，导入了大量师生的个人信息，因此提高项目的安全性至关重要。由于我们是前后端分离的项目，之前前端直接可以调用后台接口，基本上不需要任何验证，为了提高系统安全性，引入JWT进行认证和授权，前端在调用接口时，使用springMVC拦截器拦截请求，通过JWT校验传过来的令牌（token）是否正确，如果正确则相应请求，否则会重定向至登录界面，通过登录获取令牌。以下是该功能的具体实现：</p>
-<h2 id="1-什么是JWT"><a href="#1-什么是JWT" class="headerlink" title="1.什么是JWT"></a>1.什么是JWT</h2><p>JWT简称JSON Web Token,也就是通过JSON形式作为Web应用中的令牌,用于在各方之间安全地将信息作为JSON对象传输。在数据传输过程中还可以完成数据加密、签名等相关处理。                                                                                                                                                                                        </p>
-<h2 id="2-JWT能做什么"><a href="#2-JWT能做什么" class="headerlink" title="2.JWT能做什么"></a>2.JWT能做什么</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.授权</span></span><br><span class="line"><span class="bullet">-</span> 这是使用JWT的最常见方案。一旦用户登录，每个后续请求将包括JWT，从而允许用户访问该令牌允许的路由，服务和资源。单点登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用。</span><br><span class="line"></span><br><span class="line"><span class="section"># 2.信息交换</span></span><br><span class="line"><span class="bullet">-</span> JSON Web Token是在各方之间安全地传输信息的好方法。因为可以对JWT进行签名（例如，使用公钥/私钥对），所以您可以确保发件人是他们所说的人。此外，由于签名是使用标头和有效负载计算的，因此您还可以验证内容是否遭到篡改。</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-为什么是JWT"><a href="#3-为什么是JWT" class="headerlink" title="3.为什么是JWT"></a>3.为什么是JWT</h2><h3 id="基于传统的Session认证"><a href="#基于传统的Session认证" class="headerlink" title="基于传统的Session认证"></a>基于传统的Session认证</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.认证方式</span></span><br><span class="line"><span class="bullet">-</span> 我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</span><br><span class="line"></span><br><span class="line"><span class="section"># 2.认证流程</span></span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgtu.com/i/WEUdWd"><img src= "/img/loading.gif" data-lazy-src="https://z3.ax1x.com/2021/07/13/WEUdWd.png" alt="WEUdWd.png"></a></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 3.暴露问题</span></span><br><span class="line"><span class="bullet">-</span> 1.每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以方便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着认证用户的增多，服务端的开销会明显增大</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 2.用户认证之后，服务端做认证记录，如果认证的记录被保存在内存中的话，这意味着用户下次请求还必须要请求在这台服务器上,这样才能拿到授权的资源，这样在分布式的应用上，相应的限制了负载均衡器的能力。这也意味着限制了应用的扩展能力。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 3.因为是基于cookie来进行用户识别的, cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 4.在前后端分离系统中就更加痛苦:如下图所示</span><br><span class="line"><span class="code">	也就是说前后端分离在应用解耦后增加了部署的复杂性。通常用户一次请求就要转发多次。如果用session 每次携带sessionid 到服务	器，服务器还要查询用户信息。同时如果用户很多。这些信息存储在服务器内存中，给服务器增加负担。还有就是CSRF（跨站伪造请求攻	击）攻击，session是基于cookie进行用户识别的, cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。还有就是	     sessionid就是一个特征值，表达的信息不够丰富。不容易扩展。而且如果你后端应用是多节点部署。那么就需要实现session共享机制。	不方便集群应用。</span></span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgtu.com/i/WEUrOP"><img src= "/img/loading.gif" data-lazy-src="https://z3.ax1x.com/2021/07/13/WEUrOP.png" alt="WEUrOP.png"></a></p>
-<h3 id="基于JWT认证"><a href="#基于JWT认证" class="headerlink" title="基于JWT认证"></a>基于JWT认证</h3><p><a href="https://imgtu.com/i/WEUhSs"><img src= "/img/loading.gif" data-lazy-src="https://z3.ax1x.com/2021/07/13/WEUhSs.png" alt="WEUhSs.png"></a></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.认证流程</span></span><br><span class="line"><span class="bullet">-</span> 首先，前端通过Web表单将自己的用户名和密码发送到后端的接口。这一过程一般是一个HTTP POST请求。建议的方式是通过SSL加密的传输（https协议），从而避免敏感信息被嗅探。</span><br><span class="line"><span class="bullet">-</span> 后端核对用户名和密码成功后，将用户的id等其他信息作为JWT Payload（负载），将其与头部分别进行Base64编码拼接后签名，形成一个JWT(Token)。形成的JWT就是一个形同lll.zzz.xxx的字符串。 token head.payload.singurater</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 后端将JWT字符串作为登录成功的返回结果返回给前端。前端可以将返回的结果保存在localStorage或sessionStorage上，退出登录时前端删除保存的JWT即可。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 前端在每次请求时将JWT放入HTTP Header中的Authorization位。(解决XSS和XSRF问题) HEADER</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 后端检查是否存在，如存在验证JWT的有效性。例如，检查签名是否正确；检查Token是否过期；检查Token的接收方是否是自己（可选）。</span><br><span class="line"><span class="bullet">-</span> 验证通过后后端使用JWT中包含的用户信息进行其他逻辑操作，返回相应结果。</span><br><span class="line"></span><br><span class="line"><span class="section"># 2.jwt优势</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 简洁(Compact): 可以通过URL，POST参数或者在HTTP header发送，因为数据量小，传输速度也很快</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 自包含(Self-contained)：负载中包含了所有用户所需要的信息，避免了多次查询数据库</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 因为Token是以JSON加密的形式保存在客户端的，所以JWT是跨语言的，原则上任何web形式都支持。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 不需要在服务端保存会话信息，特别适用于分布式微服务。</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-JWT的结构是什么"><a href="#4-JWT的结构是什么" class="headerlink" title="4.JWT的结构是什么?"></a>4.JWT的结构是什么?</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">token   string  ====&gt;  header.payload.singnature   token   </span><br><span class="line"></span><br><span class="line"><span class="section"># 1.令牌组成</span></span><br><span class="line"><span class="bullet">-</span> 1.标头(Header)</span><br><span class="line"><span class="bullet">-</span> 2.有效载荷(Payload)</span><br><span class="line"><span class="bullet">-</span> 3.签名(Signature)</span><br><span class="line"><span class="bullet">-</span> 因此，JWT通常如下所示:xxxxx.yyyyy.zzzzz   Header.Payload.Signature</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 2.Header</span></span><br><span class="line"><span class="bullet">-</span> 标头通常由两部分组成：令牌的类型（即JWT）和所使用的签名算法，例如HMAC SHA256或RSA。它会使用 Base64 编码组成 JWT 结构的第一部分。</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 注意:Base64是一种编码，也就是说，它是可以被翻译回原来的样子来的。它并不是一种加密过程。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 3.Payload</span></span><br><span class="line"><span class="bullet">-</span> 令牌的第二部分是有效负载，其中包含声明。声明是有关实体（通常是用户）和其他数据的声明。同样的，它会使用 Base64 编码组成 JWT 结构的第二部分</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;sub&quot;</span>: <span class="string">&quot;1234567890&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;John Doe&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;admin&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 4.Signature</span></span><br><span class="line"><span class="bullet">-</span> 前面两部分都是使用 Base64 进行编码的，即前端可以解开知道里面的信息。Signature 需要使用编码后的 header 和 payload 以及我们提供的一个密钥，然后使用 header 中指定的签名算法（HS256）进行签名。签名的作用是保证 JWT 没有被篡改过</span><br><span class="line"><span class="bullet">-</span> 如:</span><br><span class="line"><span class="code">	HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),secret);</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code"># 签名目的</span></span><br><span class="line"><span class="code">- 最后一步签名的过程，实际上是对头部以及负载内容进行签名，防止内容被窜改。如果有人对头部以及负载的内容解码之后进行修改，再进行编码，最后加上之前的签名组合形成新的JWT的话，那么服务器端会判断出新的头部和负载形成的签名和JWT附带上的签名是不一样的。如果要对新的头部和负载进行签名，在不知道服务器加密时用的密钥的话，得出来的签名也是不一样的。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code"># 信息安全问题</span></span><br><span class="line"><span class="code">- 在这里大家一定会问一个问题：Base64是一种编码，是可逆的，那么我的信息不就被暴露了吗？</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">- 是的。所以，在JWT中，不应该在负载里面加入任何敏感的数据。在上面的例子中，我们传输的是用户的User ID。这个值实际上不是什么敏	感内容，一般情况下被知道也是安全的。但是像密码这样的内容就不能被放在JWT中了。如果将用户的密码放在了JWT中，那么怀有恶意的第	三方通过Base64解码就能很快地知道你的密码了。因此JWT适合用于向Web应用传递一些非敏感信息。JWT还经常用于设计用户认证和授权系	统，甚至实现Web应用的单点登录。</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 5.放在一起</span></span><br><span class="line"><span class="bullet">-</span> 输出是三个由点分隔的Base64-URL字符串，可以在HTML和HTTP环境中轻松传递这些字符串，与基于XML的标准（例如SAML）相比，它更紧凑。</span><br><span class="line"><span class="bullet">-</span> 简洁(Compact)</span><br><span class="line"><span class="code">	可以通过URL, POST 参数或者在 HTTP header 发送，因为数据量小，传输速度快</span></span><br><span class="line"><span class="code">- 自包含(Self-contained)</span></span><br><span class="line"><span class="code">	负载中包含了所有用户所需要的信息，避免了多次查询数据库</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="5-使用JWT"><a href="#5-使用JWT" class="headerlink" title="5.使用JWT"></a>5.使用JWT</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 1.引入依赖</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入jwt--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 2.生成token</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Calendar instance = Calendar.getInstance();</span><br><span class="line">instance.add(Calendar.SECOND, <span class="number">90</span>);</span><br><span class="line"><span class="comment">//生成令牌</span></span><br><span class="line">String token = JWT.create()</span><br><span class="line">  .withClaim(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;张三&quot;</span>)<span class="comment">//设置自定义用户名</span></span><br><span class="line">  .withExpiresAt(instance.getTime())<span class="comment">//设置过期时间</span></span><br><span class="line">  .sign(Algorithm.HMAC256(<span class="string">&quot;token!Q2W#E$RW&quot;</span>));<span class="comment">//设置签名 保密 复杂</span></span><br><span class="line"><span class="comment">//输出令牌</span></span><br><span class="line">System.out.println(token);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> 生成结果</span><br><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsicGhvbmUiLCIxNDMyMzIzNDEzNCJdLCJleHAiOjE1OTU3Mzk0NDIsInVzZXJuYW1lIjoi5byg5LiJIn0.aHmE3RNqvAjFr<span class="emphasis">_dvyn_</span>sD2VJ46P7EGiS5OBMO<span class="emphasis">_TI5jg</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 3.根据令牌和签名解析数据</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(<span class="string">&quot;token!Q2W#E$RW&quot;</span>)).build();</span><br><span class="line">DecodedJWT decodedJWT = jwtVerifier.verify(token);</span><br><span class="line">System.out.println(<span class="string">&quot;用户名: &quot;</span> + decodedJWT.getClaim(<span class="string">&quot;username&quot;</span>).asString());</span><br><span class="line">System.out.println(<span class="string">&quot;过期时间: &quot;</span>+decodedJWT.getExpiresAt());</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 4.常见异常信息</span></span><br><span class="line"><span class="bullet">-</span> SignatureVerificationException:				签名不一致异常</span><br><span class="line"><span class="bullet">-</span> TokenExpiredException:    						令牌过期异常</span><br><span class="line"><span class="bullet">-</span> AlgorithmMismatchException:						算法不匹配异常</span><br><span class="line"><span class="bullet">-</span> InvalidClaimException:								失效的payload异常</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-封装工具类"><a href="#6-封装工具类" class="headerlink" title="6.封装工具类"></a>6.封装工具类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JWTUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String TOKEN = <span class="string">&quot;token!Q@W3e4r&quot;</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> map  //传入payload</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回token</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getToken</span><span class="params">(Map&lt;String,String&gt; map)</span></span>&#123;</span><br><span class="line">        JWTCreator.Builder builder = JWT.create();</span><br><span class="line">        map.forEach((k,v)-&gt;&#123;</span><br><span class="line">            builder.withClaim(k,v);</span><br><span class="line">        &#125;);</span><br><span class="line">        Calendar instance = Calendar.getInstance();</span><br><span class="line">        instance.add(Calendar.SECOND,<span class="number">7</span>);</span><br><span class="line">        builder.withExpiresAt(instance.getTime());</span><br><span class="line">        <span class="keyword">return</span> builder.sign(Algorithm.HMAC256(TOKEN)).toString();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 验证token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">verify</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">        JWT.require(Algorithm.HMAC256(TOKEN)).build().verify(token);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取token中payload</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DecodedJWT <span class="title">getToken</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JWT.require(Algorithm.HMAC256(TOKEN)).build().verify(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="7-整合springboot"><a href="#7-整合springboot" class="headerlink" title="7.整合springboot"></a>7.整合springboot</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 0.搭建springboot+mybatis+jwt环境</span></span><br><span class="line"><span class="bullet">-</span> 引入依赖</span><br><span class="line"><span class="bullet">-</span> 编写配置</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入jwt--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入mybatis--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入lombok--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入druid--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.19<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入mysql--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.38<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8989</span></span><br><span class="line"><span class="meta">spring.application.name</span>=<span class="string">jwt</span></span><br><span class="line"></span><br><span class="line"><span class="meta">spring.datasource.type</span>=<span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"><span class="meta">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/jwt?characterEncoding=UTF-8</span></span><br><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">root</span></span><br><span class="line"></span><br><span class="line"><span class="meta">mybatis.type-aliases-package</span>=<span class="string">com.handsomejie.entity</span></span><br><span class="line"><span class="meta">mybatis.mapper-locations</span>=<span class="string">classpath:com/baizhi/mapper/*.xml</span></span><br><span class="line"></span><br><span class="line"><span class="meta">logging.level.com.baizhi.dao</span>=<span class="string">debug</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JWT</category>
-      </categories>
-      <tags>
-        <tag>JWT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL学习记录</title>
-    <url>/2021/04/12/MySQL%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="1-事务的四大特性（ACID）"><a href="#1-事务的四大特性（ACID）" class="headerlink" title="1.事务的四大特性（ACID）"></a>1.事务的四大特性（ACID）</h3><ol>
-<li><strong>原子性（Atomicity）：</strong> 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
-<li><strong>一致性（Consistency）：</strong> 执行事务后，数据库从一个正确的状态变化到另一个正确的状态；</li>
-<li><strong>隔离性（Isolation）：</strong> 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
-<li><strong>持久性（Durability）：</strong> 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
-</ol>
-<h3 id="2-MyISAM和InnoDB区别"><a href="#2-MyISAM和InnoDB区别" class="headerlink" title="2.MyISAM和InnoDB区别"></a><a href="https://snailclimb.gitee.io/javaguide/#/docs/database/MySQL?id=myisam%E5%92%8Cinnodb%E5%8C%BA%E5%88%AB">2.MyISAM和InnoDB区别</a></h3><p>MyISAM是MySQL的默认数据库引擎（5.5版之前）。虽然性能极佳，而且提供了大量的特性，包括全文索引、压缩、空间函数等，但MyISAM不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。不过，5.5版本之后，MySQL引入了InnoDB（事务性数据库引擎），MySQL 5.5版本后默认的存储引擎为InnoDB。</p>
-<p>大多数时候我们使用的都是 InnoDB 存储引擎，但是在某些情况下使用 MyISAM 也是合适的比如读密集的情况下。（如果你不介意 MyISAM 崩溃恢复问题的话）。</p>
-<h4 id="两者的对比："><a href="#两者的对比：" class="headerlink" title="两者的对比："></a>两者的对比：</h4><ol>
-<li><strong>是否支持行级锁</strong> : MyISAM 只有表级锁(table-level locking)，而InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁。</li>
-<li><strong>是否支持事务和崩溃后的安全恢复： MyISAM</strong> 强调的是性能，每次查询具有原子性,其执行速度比InnoDB类型更快，但是不提供事务支持。但是<strong>InnoDB</strong> 提供事务支持，外部键等高级数据库功能。 具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)的事务安全(transaction-safe (ACID compliant))型表。</li>
-<li><strong>是否支持外键：</strong> MyISAM不支持，而InnoDB支持。</li>
-<li><strong>是否支持MVCC</strong> ：仅 InnoDB 支持。应对高并发事务, MVCC比单纯的加锁更高效;MVCC只在 <code>READ COMMITTED</code> 和 <code>REPEATABLE READ</code> 两个隔离级别下工作;MVCC可以使用 乐观(optimistic)锁 和 悲观(pessimistic)锁来实现;各数据库中MVCC实现并不统一。推荐阅读：<a href="https://segmentfault.com/a/1190000012650596">MySQL-InnoDB-MVCC多版本并发控制</a></li>
-</ol>
-<h3 id="3-并发带来的问题"><a href="#3-并发带来的问题" class="headerlink" title="3.并发带来的问题"></a>3.并发带来的问题</h3><h4 id="1-脏读："><a href="#1-脏读：" class="headerlink" title="1.脏读："></a>1.脏读：</h4><p>读取一个修改但还未提交的数据</p>
-<h4 id="2-丢失修改"><a href="#2-丢失修改" class="headerlink" title="2.丢失修改"></a>2.丢失修改</h4><p>第一个事务修改了数据，第二个事务也修改了该数据，那么第一次修改就丢失了</p>
-<h4 id="3-不可重复读"><a href="#3-不可重复读" class="headerlink" title="3.不可重复读"></a>3.不可重复读</h4><p>指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</p>
-<h4 id="4-幻读"><a href="#4-幻读" class="headerlink" title="4.幻读"></a>4.幻读</h4><p>幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
-<p><strong>不可重复读和幻读区别：</strong></p>
-<p>不可重复读的重点是修改比如多次读取一条记录发现其中某些列的值被修改，幻读的重点在于新增或者删除比如多次读取一条记录发现记录增多或减少了。</p>
-<h3 id="4-锁机制与InnoDB锁算法"><a href="#4-锁机制与InnoDB锁算法" class="headerlink" title="4.锁机制与InnoDB锁算法"></a>4.锁机制与InnoDB锁算法</h3><p><strong>MyISAM和InnoDB存储引擎使用的锁：</strong></p>
-<ul>
-<li>MyISAM采用表级锁(table-level locking)。</li>
-<li>InnoDB支持行级锁(row-level locking)和表级锁,默认为行级锁</li>
-</ul>
-<p><strong>表级锁和行级锁对比：</strong></p>
-<ul>
-<li><strong>表级锁：</strong> MySQL中锁定 <strong>粒度最大</strong> 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，并发度最低，MyISAM和 InnoDB引擎都支持表级锁。</li>
-<li><strong>行级锁：</strong> MySQL中锁定 <strong>粒度最小</strong> 的一种锁，只针对当前操作的行进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。</li>
-</ul>
-<p>详细内容可以参考： MySQL锁机制简单了解一下：<a href="https://blog.csdn.net/qq_34337272/article/details/80611486">https://blog.csdn.net/qq_34337272/article/details/80611486</a></p>
-<p><strong>InnoDB存储引擎的锁的算法有三种：</strong></p>
-<ul>
-<li>Record lock：单个行记录上的锁</li>
-<li>Gap lock：间隙锁，锁定一个范围，不包括记录本身</li>
-<li>Next-key lock：record+gap 锁定一个范围，包含记录本身</li>
-</ul>
-<h3 id="5-分库分表之后-id-主键如何处理？"><a href="#5-分库分表之后-id-主键如何处理？" class="headerlink" title="5.分库分表之后,id 主键如何处理？"></a>5.分库分表之后,id 主键如何处理？</h3><p>因为要是分成多个表之后，每个表都是从 1 开始累加，这样是不对的，我们需要一个全局唯一的 id 来支持。</p>
-<p>生成全局 id 有下面这几种方式：</p>
-<ul>
-<li><strong>UUID</strong>：不适合作为主键，因为太长了，并且无序不可读，查询效率低。比较适合用于生成唯一的名字的标示比如文件的名字。</li>
-<li><strong>数据库自增 id</strong> : 两台数据库分别设置不同步长，生成不重复ID的策略来实现高可用。这种方式生成的 id 有序，但是需要独立部署数据库实例，成本高，还会有性能瓶颈。</li>
-<li><strong>利用 redis 生成 id :</strong> 性能比较好，灵活方便，不依赖于数据库。但是，引入了新的组件造成系统更加复杂，可用性降低，编码更加复杂，增加了系统成本。</li>
-<li><strong>Twitter的snowflake算法</strong> ：Github 地址：<a href="https://github.com/twitter-archive/snowflake%E3%80%82">https://github.com/twitter-archive/snowflake。</a></li>
-<li><strong>美团的<a href="https://tech.meituan.com/2017/04/21/mt-leaf.html">Leaf</a>分布式ID生成系统</strong> ：Leaf 是美团开源的分布式ID生成器，能保证全局唯一性、趋势递增、单调递增、信息安全，里面也提到了几种分布式方案的对比，但也需要依赖关系数据库、Zookeeper等中间件。感觉还不错。美团技术团队的一篇文章：<a href="https://tech.meituan.com/2017/04/21/mt-leaf.html">https://tech.meituan.com/2017/04/21/mt-leaf.html</a> 。</li>
-</ul>
-<h3 id="6-腾讯面试：一条SQL语句执行得很慢的原因有哪些？"><a href="#6-腾讯面试：一条SQL语句执行得很慢的原因有哪些？" class="headerlink" title="6.腾讯面试：一条SQL语句执行得很慢的原因有哪些？"></a>6.腾讯面试：一条SQL语句执行得很慢的原因有哪些？</h3><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485185&amp;idx=1&amp;sn=66ef08b4ab6af5757792223a83fc0d45&amp;chksm=cea248caf9d5c1dc72ec8a281ec16aa3ec3e8066dbb252e27362438a26c33fbe842b0e0adf47&amp;token=79317275&amp;lang=zh_CN#rd">https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485185&amp;idx=1&amp;sn=66ef08b4ab6af5757792223a83fc0d45&amp;chksm=cea248caf9d5c1dc72ec8a281ec16aa3ec3e8066dbb252e27362438a26c33fbe842b0e0adf47&amp;token=79317275&amp;lang=zh_CN#rd</a></p>
-<p>一个 SQL 执行的很慢，我们要分两种情况讨论：</p>
-<p><strong>1、大多数情况下很正常，偶尔很慢，则有如下原因</strong></p>
-<p>(1)、数据库在刷新脏页，例如 redo log 写满了需要同步到磁盘。</p>
-<p>(2)、执行的时候，遇到锁，如表锁、行锁。</p>
-<p><strong>2、这条 SQL 语句一直执行的很慢，则有如下原因。</strong></p>
-<p>(1)、没有用上索引：例如该字段没有索引；由于对字段进行运算、函数操作导致无法用索引。</p>
-<p>(2)、数据库选错了索引。</p>
-<h3 id="7-索引"><a href="#7-索引" class="headerlink" title="7.索引"></a>7.索引</h3><p><strong>索引是一种用于快速查询和检索数据的数据结构。常见的索引结构有: B 树， B+树和 Hash</strong></p>
-<p>索引优点：可以大大加快 数据的检索速度（大大减少的检索的数据量）, 这也是创建索引的最主要的原因。毕竟大部分系统的读请求总是大于写请求的。 另外，通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。</p>
-<p>索引的缺点：</p>
-<ol>
-<li><strong>创建索引和维护索引需要耗费许多时间</strong>：当对表中的数据进行增删改的时候，如果数据有索引，那么索引也需要动态的修改，会降低 SQL 执行效率。</li>
-<li><strong>占用物理存储空间</strong> ：索引需要使用物理文件存储，也会耗费一定空间。</li>
-</ol>
-<h4 id="B-树和-B-树区别"><a href="#B-树和-B-树区别" class="headerlink" title="B 树和 B+树区别"></a>B 树和 B+树区别</h4><ul>
-<li>B 树的所有节点既存放 键(key) 也存放 数据(data);而 B+树只有叶子节点存放 key 和 data，其他内节点只存放 key。</li>
-<li>B 树的叶子节点都是独立的;B+树的叶子节点有一条引用链指向与它相邻的叶子节点。</li>
-<li>B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。而 B+树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显。</li>
-</ul>
-<h3 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h3>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JAVA编程思想</title>
-    <url>/2021/04/12/JAVA%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><h3 id="1-jvm、字节码及其好处"><a href="#1-jvm、字节码及其好处" class="headerlink" title="1.jvm、字节码及其好处"></a>1.jvm、字节码及其好处</h3><p>在 Java 中，JVM 可以理解的代码就叫做<code>字节码</code>（即扩展名为 <code>.class</code> 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。</p>
-<p>JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，java 命令和其他的一些基础构件。但是，它不能用于创建新程序。</p>
-<h3 id="2-从源代码到执行的三个步骤"><a href="#2-从源代码到执行的三个步骤" class="headerlink" title="2.从源代码到执行的三个步骤"></a>2.从源代码到执行的三个步骤</h3><p>Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。字节码和不同系统的 JVM 实现是 Java 语言“一次编译，随处可以运行”的关键所在。</p>
-<h3 id="3-java与c-的区别"><a href="#3-java与c-的区别" class="headerlink" title="3.java与c++的区别"></a>3.java与c++的区别</h3><ul>
-<li>都是面向对象的语言，都支持封装、继承和多态</li>
-<li>Java 不提供指针来直接访问内存，程序内存更加安全</li>
-<li>Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承。</li>
-<li>Java 有自动内存管理垃圾回收机制(GC)，不需要程序员手动释放无用内存</li>
-<li><strong>在 C 语言中，字符串或字符数组最后都会有一个额外的字符<code>&#39;\0&#39;</code>来表示结束。但是，Java 语言中没有结束符这一概念。</strong> 这是一个值得深度思考的问题，具体原因推荐看这篇文章： <a href="https://blog.csdn.net/sszgg2006/article/details/49148189">https://blog.csdn.net/sszgg2006/article/details/49148189</a></li>
-</ul>
-<h3 id="4-为什么java编译与解释并存"><a href="#4-为什么java编译与解释并存" class="headerlink" title="4.为什么java编译与解释并存"></a>4.为什么java编译与解释并存</h3><h3 id="5-continue、break、和return的区别"><a href="#5-continue、break、和return的区别" class="headerlink" title="5.continue、break、和return的区别"></a>5.continue、break、和return的区别</h3><p>return 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：</p>
-<ol>
-<li><code>return;</code> ：直接使用 return 结束方法执行，用于没有返回值函数的方法</li>
-<li><code>return value;</code> ：return 一个特定值，用于有返回值函数的方法</li>
-</ol>
-<h3 id="6-Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？"><a href="#6-Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？" class="headerlink" title="6.Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？"></a>6.Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？</h3><p>Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。<strong>Java的泛型是伪泛型，这是因为Java在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。</strong>泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。</p>
-<h3 id="7-和equals的区别"><a href="#7-和equals的区别" class="headerlink" title="7.==和equals的区别"></a>7.==和equals的区别</h3><p><strong><code>==</code></strong> : 它的作用是判断两个对象的地址是不是相等。即判断两个对象是不是同一个对象。(<strong>基本数据类型==比较的是值，引用数据类型==比较的是内存地址</strong>)，因为 Java 只有值传递，所以，对于 == 来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。</p>
-<p><strong><code>equals()</code></strong> : 它的作用也是判断两个对象是否相等，它不能用于比较基本数据类型的变量。<code>equals()</code>方法存在于<code>Object</code>类中，而<code>Object</code>类是所有类的直接或间接父类。</p>
-<p><code>equals()</code> 方法存在两种使用情况：</p>
-<ul>
-<li>情况 1：类没有覆盖 <code>equals()</code>方法。则通过<code> equals()</code>比较该类的两个对象时，等价于通过“==”比较这两个对象。使用的默认是 <code>Object</code>类<code>equals()</code>方法。</li>
-<li>情况 2：类覆盖了 <code>equals()</code>方法。一般，我们都覆盖 <code>equals()</code>方法来两个对象的内容相等；若它们的内容相等，则返回 true(即，认为这两个对象相等)。</li>
-</ul>
-<p>说明：</p>
-<ul>
-<li><code>String</code> 中的 <code>equals</code> 方法是被重写过的，因为 <code>Object</code> 的 <code>equals</code> 方法是比较的对象的内存地址，而 <code>String</code> 的 <code>equals</code> 方法比较的是对象的值。</li>
-<li>当创建 <code>String</code> 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 <code>String</code> 对象。</li>
-</ul>
-<h3 id="8-hashCode-与-equals"><a href="#8-hashCode-与-equals" class="headerlink" title="8.hashCode()与 equals()"></a>8.hashCode()与 equals()</h3><p><a href="https://www.cnblogs.com/skywang12345/p/3324958.html">https://www.cnblogs.com/skywang12345/p/3324958.html</a></p>
-<h3 id="9-基本数据类型"><a href="#9-基本数据类型" class="headerlink" title="9.基本数据类型"></a>9.基本数据类型</h3><p>Java<strong>中</strong>有8种基本数据类型，分别为：</p>
-<ol>
-<li>6种数字类型 ：byte、short、int、long、float、double</li>
-<li>1种字符类型：char</li>
-<li>1种布尔型：boolean。</li>
-</ol>
-<p>这八种基本类型都有对应的包装类分别为：Byte、Short、Integer、Long、Float、Double、Character、Boolean</p>
-<h3 id="10-持有对象"><a href="#10-持有对象" class="headerlink" title="10.持有对象"></a>10.持有对象</h3>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>shiro框架学习</title>
-    <url>/2021/01/06/shiro%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-权限的管理"><a href="#1-权限的管理" class="headerlink" title="1.权限的管理"></a>1.权限的管理</h3><p>权限管理实现<code>对用户访问系统的控制</code>，按照安全规则或者<a href="http://baike.baidu.com/view/160028.htm">安全策略</a>控制用户可以访问而且只能访问自己被授权的资源。</p>
-<p>权限管理核心：<strong>身份认证+授权</strong>，对于需要访问控制的资源用户首先经过身份认证，认证通过后用户具有该资源的访问权限方可访问。</p>
-<h3 id="2-shiro的核心架构"><a href="#2-shiro的核心架构" class="headerlink" title="2.shiro的核心架构"></a>2.shiro的核心架构</h3><h4 id="2-1-Subject"><a href="#2-1-Subject" class="headerlink" title="2.1 Subject"></a>2.1 Subject</h4><p><code>Subject即主体</code>，外部应用与subject进行交互，subject记录了当前操作用户，将用户的概念理解为当前操作的主体，可能是一个通过浏览器请求的用户，也可能是一个运行的程序。    Subject在shiro中是一个接口，接口中定义了很多认证授相关的方法，<strong>外部程序通过subject进行认证授权，而subject是通过SecurityManager安全管理器进行认证授权</strong></p>
-<h3 id="2-2-SecurityManager"><a href="#2-2-SecurityManager" class="headerlink" title="2.2 SecurityManager"></a>2.2 SecurityManager</h3><p><code>SecurityManager即安全管理器</code>，对全部的subject进行安全管理，它是shiro的核心，负责对所有的subject进行安全管理。通过SecurityManager可以完成subject的认证、授权等，实质上<strong>SecurityManager是通过Authenticator进行认证，通过Authorizer进行授权</strong>，通过SessionManager进行会话管理等。</p>
-<p><code>SecurityManager是一个接口，继承了Authenticator, Authorizer, SessionManager这三个接口。</code></p>
-<h3 id="2-3-Authenticator"><a href="#2-3-Authenticator" class="headerlink" title="2.3 Authenticator"></a>2.3 Authenticator</h3><p><code>Authenticator即认证器</code>，对用户身份进行认证，Authenticator是一个接口，shiro提供ModularRealmAuthenticator实现类，通过ModularRealmAuthenticator基本上可以满足大多数需求，也可以自定义认证器。</p>
-<h3 id="2-4-Authorizer"><a href="#2-4-Authorizer" class="headerlink" title="2.4 Authorizer"></a>2.4 Authorizer</h3><p><code>Authorizer即授权器</code>，用户通过认证器认证通过，在访问功能时需要通过授权器判断用户是否有此功能的操作权限。</p>
-<h3 id="2-5-Realm"><a href="#2-5-Realm" class="headerlink" title="2.5 Realm"></a>2.5 Realm</h3><p><code>Realm即领域</code>，相当于datasource数据源，securityManager进行安全认证需要通过Realm获取用户权限数据，比如：如果用户身份数据在数据库那么realm就需要从数据库获取用户身份信息。</p>
-<ul>
-<li>​    <strong>注意：不要把realm理解成只是从数据源取数据，在realm中还有认证授权校验的相关的代码。</strong></li>
-</ul>
-<h3 id="2-6-SessionManager"><a href="#2-6-SessionManager" class="headerlink" title="2.6 SessionManager"></a>2.6 SessionManager</h3><p><code>sessionManager即会话管理</code>，shiro框架定义了一套会话管理，它不依赖web容器的session，所以shiro可以使用在非web应用上，也可以将分布式应用的会话集中在一点管理，此特性可使它实现单点登录。</p>
-<h3 id="2-7-SessionDAO"><a href="#2-7-SessionDAO" class="headerlink" title="2.7 SessionDAO"></a>2.7 SessionDAO</h3><p><code>SessionDAO即会话dao</code>，是对session会话操作的一套接口，比如要将session存储到数据库，可以通过jdbc将会话存储到数据库。</p>
-<h3 id="2-8-CacheManager"><a href="#2-8-CacheManager" class="headerlink" title="2.8 CacheManager"></a>2.8 CacheManager</h3><p><code>CacheManager即缓存管理</code>，将用户权限数据存储在缓存，这样可以提高性能。</p>
-<h3 id="2-9-Cryptography"><a href="#2-9-Cryptography" class="headerlink" title="2.9 Cryptography"></a>2.9 Cryptography</h3><p>​    <code>Cryptography即密码管理</code>，shiro提供了一套加密/解密的组件，方便开发。比如提供常用的散列、加/解密等功能。</p>
-<hr>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h3>]]></content>
-      <categories>
-        <category>Shiro</category>
-      </categories>
-      <tags>
-        <tag>Shiro</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo常用命令</title>
-    <url>/2021/01/06/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-简写指令"><a href="#1-简写指令" class="headerlink" title="1.简写指令:"></a>1.简写指令:</h2><p> <code>hexo n</code> “我的文章” 新建文章<br> <code>hexo p</code> 等价于 <code>hexo publish</code><br> <code>hexo g</code> 等价于 <code>hexo generate</code><br> <code>hexo s</code>等价于 <code>hexo server</code><br> <code>hexo d</code> 等价于 <code>hexo deploy</code><br> <code>hexo deploy -g</code>  等价于 <code>hexo deploy --generate</code><br> <code>hexo generate -d</code>等价于`hexo generate –deploy</p>
-<p><strong>注: hexo  clean 没有 简写,  git –version 没有简写</strong></p>
-<h2 id="2-指令说明"><a href="#2-指令说明" class="headerlink" title="2.指令说明:"></a>2.指令说明:</h2><p> <code>hexo server</code>    #Hexo 会监视文件变动并自动更新，除修改<strong>站点配置文件</strong>外,无须重启服务器,直接刷新网页即可生效。<br> <code>hexo server -s</code> #以静态模式启动<br> <code>hexo server -p 5000</code> #更改访问端口   (默认端口为4000，’ctrl + c’关闭server)<br> <code>hexo server -i IP地址</code> #自定义 IP<br> <code>hexo clean</code> #清除缓存  ,网页正常情况下可以忽略此条命令,执行该指令后,会删掉站点根目录下的public文件夹<br> <code>hexo g</code> #生成静态网页  (执行 <code>$ hexo g</code>后会在站点根目录下生成public文件夹, hexo会将”/blog/source/“   下面的.md后缀的文件编译为.html后缀的文件,存放在”/blog/public/ “   路径下)<br> <code>hexo d</code> #将本地数据部署到远端服务器(如github)<br> <code>hexo init 文件夹名称</code> #初始化XX文件夹名称<br> <code>npm update hexo -g</code>#升级<br> <code>npm install hexo -g</code>#安装<br> <code>node-v</code>          #查看node.js版本号<br> <code>npm -v</code>        #查看npm版本号<br> <code>git --version</code>  #查看git版本号<br> <code>hexo -v</code>      #查看hexo版本号</p>
-<p><code>hexo publish [layout] &lt;title&gt;</code>   #通过 <code>publish</code> 命令将草稿移动到 <code>source/_posts</code> 文件夹,如:<code>$ hexo publish [layout] &lt;title&gt;</code>,草稿默认是不会显示在页面中的，可在执行时加上 <code>--draft</code> 参数，或是把 <code>render_drafts</code> 参数设为 <code>true</code>来预览草稿。</p>
-<p><code>hexo new aaa &quot;bbb&quot;</code>  # 新建一篇文章,文章名称和标题分别为bbb.md 和 bbb.   文章采用aaa布局,  此时会在站点根目录下的—-&gt;source—–&gt;_post文件夹下生成bbb.md文件,  bbb.md文件的顶部(—–分割线上方区域,也称作Front matter区),生成</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">layout : aaa&#96;</span><br><span class="line"> &#96;title:&#96;</span><br><span class="line"> &#96;date:</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Tools</tag>
-        <tag>常用命令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Leetcode MySQL记录</title>
-    <url>/2020/09/30/Leetcode-MySql%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-超过经理收入的员工"><a href="#1-超过经理收入的员工" class="headerlink" title="1.超过经理收入的员工"></a>1.超过经理收入的员工</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    *</span><br><span class="line">FROM</span><br><span class="line">    Employee AS a,	（新颖）</span><br><span class="line">    Employee AS b</span><br><span class="line">WHERE</span><br><span class="line">    a.ManagerId &#x3D; b.Id</span><br><span class="line">        AND a.Salary &gt; b.Salary</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-删除重复数据"><a href="#2-删除重复数据" class="headerlink" title="2.删除重复数据"></a>2.删除重复数据</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">delete a from Person a,Person b where a.Email &#x3D; b.Email and a.id &gt; b.id	</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-返回两个日期之间的天数（DATEDIFF）"><a href="#3-返回两个日期之间的天数（DATEDIFF）" class="headerlink" title="3.返回两个日期之间的天数（DATEDIFF）"></a>3.返回两个日期之间的天数（DATEDIFF）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT DATEDIFF(&#39;2008-12-30&#39;,&#39;2008-12-29&#39;) AS DiffDate</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-取第二高的薪水"><a href="#4-取第二高的薪水" class="headerlink" title="4.取第二高的薪水"></a>4.取第二高的薪水</h3><p>offset X   是跳过X个数据  limit Y      是选取Y个数据</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    IFNULL(</span><br><span class="line">      (SELECT DISTINCT Salary</span><br><span class="line">       FROM Employee</span><br><span class="line">       ORDER BY Salary DESC</span><br><span class="line">        LIMIT 1 OFFSET 1),</span><br><span class="line">    NULL) AS SecondHighestSalary</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-实现分数排名"><a href="#5-实现分数排名" class="headerlink" title="5.实现分数排名"></a>5.实现分数排名</h3><p>确定一个分数的排名，就是大于此分数的分数去重后的个数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select a.Score as Score,</span><br><span class="line">(select count(distinct b.Score) from Scores b where b.Score &gt;&#x3D; a.Score) as &#39;Rank&#39;</span><br><span class="line">from Scores a</span><br><span class="line">order by a.Score DESC</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AJAX学习记录</title>
-    <url>/2020/09/30/AJAX%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、AJAX简介"><a href="#一、AJAX简介" class="headerlink" title="一、AJAX简介"></a>一、AJAX简介</h2><p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML），AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。</p>
-<p><img src= "/img/loading.gif" data-lazy-src="https://www.runoob.com/wp-content/uploads/2013/09/ajax-yl.png" alt="AJAX"></p>
-<h2 id="二、AJAX实例"><a href="#二、AJAX实例" class="headerlink" title="二、AJAX实例"></a>二、AJAX实例</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> xmlhttp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">	xmlhttp.send();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;myDiv&quot;</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>&lt;/div&gt;</span><br><span class="line">&lt;button type=<span class="string">&quot;button&quot;</span> onclick=<span class="string">&quot;loadXMLDoc()&quot;</span>&gt;修改内容&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>div 部分用于显示来自服务器的信息。当按钮被点击时，它负责调用名为 loadXMLDoc() 的函数</p>
-<h2 id="三、AJAX创建对象"><a href="#三、AJAX创建对象" class="headerlink" title="三、AJAX创建对象"></a>三、AJAX创建对象</h2><p>XMLHttpRequest 是 AJAX 的基础，用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
-<p>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="四、XHR请求"><a href="#四、XHR请求" class="headerlink" title="四、XHR请求"></a>四、XHR请求</h2><p>XMLHttpRequest 对象用于和服务器交换数据。如需将请求发送到服务器，使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>open(<em>method</em>,<em>url</em>,<em>async</em>)</th>
-<th align="left">规定请求的类型、URL 以及是否异步处理请求。<em>method</em>：请求的类型；GET 或 POST<em>url</em>：文件在服务器上的位置<em>async</em>：true（异步）或 false（同步）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>send(<em>string</em>)</td>
-<td align="left">将请求发送到服务器。<em>string</em>：仅用于 POST 请求</td>
-</tr>
-</tbody></table>
-<h2 id="五、XHR响应"><a href="#五、XHR响应" class="headerlink" title="五、XHR响应"></a>五、XHR响应</h2><p>如需获得来自服务器的响应，可使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">responseText</td>
-<td align="left">获得字符串形式的响应数据。</td>
-</tr>
-<tr>
-<td align="left">responseXML</td>
-<td align="left">获得 XML 形式的响应数据。</td>
-</tr>
-</tbody></table>
-<h3 id="1-responseText-属性"><a href="#1-responseText-属性" class="headerlink" title="1.responseText 属性"></a>1.responseText 属性</h3><p>如果来自服务器的响应并非 XML，请使用 responseText 属性。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-responseXML-属性"><a href="#2-responseXML-属性" class="headerlink" title="2.responseXML 属性"></a>2.responseXML 属性</h3><p>如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xmlDoc=xmlhttp.responseXML;</span><br><span class="line">txt=<span class="string">&quot;&quot;</span>;</span><br><span class="line">x=xmlDoc.getElementsByTagName(<span class="string">&quot;ARTIST&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;x.length;i++)</span><br><span class="line">&#123;</span><br><span class="line">    txt=txt + x[i].childNodes[<span class="number">0</span>].nodeValue + <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myDiv&quot;</span>).innerHTML=txt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="六、XHR-ready-State"><a href="#六、XHR-ready-State" class="headerlink" title="六、XHR ready State"></a>六、XHR ready State</h2><h3 id="1-onreadystatechange-事件"><a href="#1-onreadystatechange-事件" class="headerlink" title="1.onreadystatechange 事件"></a>1.onreadystatechange 事件</h3><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当 readyState 改变时，就会触发 onreadystatechange 事件。readyState 属性存有 XMLHttpRequest 的状态信息。</p>
-<p>XMLHttpRequest 对象的三个重要的属性：</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">onreadystatechange</td>
-<td align="left">存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</td>
-</tr>
-<tr>
-<td align="left">readyState</td>
-<td align="left">存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪</td>
-</tr>
-<tr>
-<td align="left">status</td>
-<td align="left">200: “OK” 404: 未找到页面</td>
-</tr>
-</tbody></table>
-<p>未完待续…</p>
-]]></content>
-      <categories>
-        <category>ajax</category>
-      </categories>
-      <tags>
-        <tag>ajax</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>React学习记录</title>
-    <url>/2020/09/07/React%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、React安装"><a href="#一、React安装" class="headerlink" title="一、React安装"></a>一、React安装</h2><ul>
-<li><strong>react.min.js</strong> - React 的核心库</li>
-<li><strong>react-dom.min.js</strong> - 提供与 DOM 相关的功能</li>
-<li><strong>babel.min.js</strong> - Babel 可以将 ES6 代码转为 ES5 代码，这样我们就能在目前不支持 ES6 浏览器上执行 React 代码。Babel 内嵌了对 JSX 的支持。通过将 Babel 和 babel-sublime 包（package）一同使用可以让源码的语法渲染上升到一个全新的水平。</li>
-</ul>
-<h3 id="1-使用-create-react-app-快速构建-React-开发环境"><a href="#1-使用-create-react-app-快速构建-React-开发环境" class="headerlink" title="1.使用 create-react-app 快速构建 React 开发环境"></a>1.使用 create-react-app 快速构建 React 开发环境</h3><p>create-react-app 自动创建的项目是基于 Webpack + ES6 </p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$ npm install -g create-react-app</span><br><span class="line">$ create-react-app reactstudy</span><br><span class="line">$ cd reactstudy/</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
-
-<p>manifest.json 指定了开始页面 index.html，一切的开始都从这里开始，所以这个是代码执行的源头。</p>
-<h3 id="2-create-react-app-执行慢的解决方法"><a href="#2-create-react-app-执行慢的解决方法" class="headerlink" title="2.create-react-app 执行慢的解决方法"></a>2.create-react-app 执行慢的解决方法</h3><p>换成淘宝的资源</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$ npm config set registry https:<span class="comment">//registry.npm.taobao.org</span></span><br><span class="line">-- 配置后可通过下面方式来验证是否成功</span><br><span class="line">$ npm config get registry</span><br><span class="line">-- 或 npm info express</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、React-元素渲染"><a href="#二、React-元素渲染" class="headerlink" title="二、React 元素渲染"></a>二、React 元素渲染</h2><p>元素是构成 React 应用的最小单位，它用于描述屏幕上输出的内容。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;;</span><br></pre></td></tr></table></figure>
-
-<p>将元素渲染到DOM中</p>
-<p>首先我们在一个 HTML 页面中添加一个 <strong>id=”example”</strong> 的 <strong><div></strong>:</p>
-<p>在此 div 中的所有内容都将由 React DOM 来管理，所以我们将其称为 “根” DOM 节点。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;;</span><br><span class="line">ReactDOM.render(    </span><br><span class="line">	element,</span><br><span class="line">    document.getElementById(&#39;example&#39;) </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、React-JSX"><a href="#三、React-JSX" class="headerlink" title="三、React   JSX"></a>三、React   JSX</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myDivElement &#x3D; &lt;div className&#x3D;&quot;foo&quot; &#x2F;&gt;;</span><br><span class="line">ReactDOM.render(myDivElement, document.getElementById(&#39;example&#39;));</span><br></pre></td></tr></table></figure>
-
-<h2 id="四、React-组件"><a href="#四、React-组件" class="headerlink" title="四、React 组件"></a>四、React 组件</h2><h3 id="1-使用函数定义了一个组件"><a href="#1-使用函数定义了一个组件" class="headerlink" title="1.使用函数定义了一个组件"></a>1.使用函数定义了一个组件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function HelloMessage(props) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello World!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-使用-class-定义一个组件"><a href="#2-使用-class-定义一个组件" class="headerlink" title="2.使用 class 定义一个组件"></a>2.使用 class 定义一个组件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello World!&lt;&#x2F;h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>注意，原生 HTML 元素名以小写字母开头，而自定义的 React 类名以大写字母开头，比如 HelloMessage 不能写成 helloMessage。除此之外还需要注意组件类只能包含一个顶层标签，否则也会报错。</em></p>
-<p>如果我们需要向组件传递参数，可以使用 <strong>this.props</strong> 对象</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function HelloMessage(props) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello &#123;props.name&#125;!&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const element &#x3D; &lt;HelloMessage name&#x3D;&quot;Runoob&quot;&#x2F;&gt;;</span><br><span class="line"> </span><br><span class="line">ReactDOM.render(</span><br><span class="line">    element,</span><br><span class="line">    document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="五、React-State-状态"><a href="#五、React-State-状态" class="headerlink" title="五、React State(状态)"></a>五、React State(状态)</h2><p>React 把组件看成是一个状态机（State Machines）。通过与用户的交互，实现不同状态，然后渲染 UI，让用户界面和数据保持一致。只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;现在是 &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Clock &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-将生命周期方法添加到类中"><a href="#1-将生命周期方法添加到类中" class="headerlink" title="1.将生命周期方法添加到类中"></a>1.将生命周期方法添加到类中</h3><p>在具有许多组件的应用程序中，在销毁时释放组件所占用的资源非常重要。每当 Clock 组件第一次加载到 DOM 中的时候，我们都想生成定时器，这在 React 中被称为<strong>挂载</strong>。同样，每当 Clock 生成的这个 DOM 被移除的时候，我们也会想要清除定时器，这在 React 中被称为<strong>卸载</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Clock extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state &#x3D; &#123;date: new Date()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.timerID &#x3D; setInterval(</span><br><span class="line">      () &#x3D;&gt; this.tick(),</span><br><span class="line">      1000</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    clearInterval(this.timerID);</span><br><span class="line">  &#125;</span><br><span class="line">  tick() &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      date: new Date()</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;h2&gt;现在是 &#123;this.state.date.toLocaleTimeString()&#125;.&lt;&#x2F;h2&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Clock &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p><strong>代码执行顺序：</strong></p>
-<ol>
-<li>当 <code>&lt;Clock /&gt;</code> 被传递给 <code>ReactDOM.render()</code> 时，React 调用 <code>Clock</code> 组件的构造函数。 由于 <code>Clock</code> 需要显示当前时间，所以使用包含当前时间的对象来初始化 <code>this.state</code> 。 我们稍后会更新此状态。</li>
-<li>React 然后调用 <code>Clock</code> 组件的 <code>render()</code> 方法。这是 React 了解屏幕上应该显示什么内容，然后 React 更新 DOM 以匹配 <code>Clock</code> 的渲染输出。</li>
-<li>当 <code>Clock</code> 的输出插入到 DOM 中时，React 调用 <code>componentDidMount()</code> 生命周期钩子。 在其中，<code>Clock</code> 组件要求浏览器设置一个定时器，每秒钟调用一次 <code>tick()</code>。</li>
-<li>浏览器每秒钟调用 <code>tick()</code> 方法。 在其中，<code>Clock</code> 组件通过使用包含当前时间的对象调用 <code>setState()</code> 来调度UI更新。 通过调用 <code>setState()</code> ，React 知道状态已经改变，并再次调用 <code>render()</code> 方法来确定屏幕上应当显示什么。 这一次，<code>render()</code> 方法中的 <code>this.state.date</code> 将不同，所以渲染输出将包含更新的时间，并相应地更新 DOM。</li>
-<li>一旦 <code>Clock</code> 组件被从 DOM 中移除，React 会调用 <code>componentWillUnmount()</code> 这个钩子函数，定时器也就会被清除。</li>
-</ol>
-<h2 id="六、React-Props"><a href="#六、React-Props" class="headerlink" title="六、React Props"></a>六、React Props</h2><p>state 和 props 主要的区别在于 <strong>props</strong> 是不可变的，而 state 可以根据与用户交互来改变。这就是为什么有些容器组件需要定义 state 来更新和修改数据。 而子组件只能通过 props 来传递数据。</p>
-<h3 id="1-State-和-Props"><a href="#1-State-和-Props" class="headerlink" title="1.State 和 Props"></a>1.State 和 Props</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class WebSite extends React.Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">      super();</span><br><span class="line"> </span><br><span class="line">      this.state &#x3D; &#123;</span><br><span class="line">        name: &quot;ConfidenceBoy&quot;,</span><br><span class="line">        site: &quot;https:&#x2F;&#x2F;www.handsomejie.cn&#x2F;&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Name name&#x3D;&#123;this.state.name&#125; &#x2F;&gt;</span><br><span class="line">        &lt;Link site&#x3D;&#123;this.state.site&#125; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br><span class="line">class Name extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1&gt;&#123;this.props.name&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Link extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;a href&#x3D;&#123;this.props.site&#125;&gt;</span><br><span class="line">        &#123;this.props.site&#125;</span><br><span class="line">      &lt;&#x2F;a&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;WebSite &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="七、React-事件处理"><a href="#七、React-事件处理" class="headerlink" title="七、React 事件处理"></a>七、React 事件处理</h2><h3 id="1-事件处理"><a href="#1-事件处理" class="headerlink" title="1.事件处理"></a>1.事件处理</h3><p>React 元素的事件处理和 DOM 元素类似。但是有一点语法上的不同:</p>
-<ul>
-<li>React 事件绑定属性的命名采用驼峰式写法，而不是小写。</li>
-<li>如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM 元素的写法)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class LoggingButton extends React.Component &#123;</span><br><span class="line">  &#x2F;&#x2F; 这个语法确保了 &#96;this&#96; 绑定在  handleClick 中</span><br><span class="line">  &#x2F;&#x2F; 这里只是一个测试</span><br><span class="line">  handleClick &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;this is:&#39;, this);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;button onClick&#x3D;&#123;this.handleClick&#125;&gt;</span><br><span class="line">        Click me</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;向事件处理程序传递参数</span><br><span class="line">&lt;button onClick&#x3D;&#123;(e) &#x3D;&gt; this.deleteRow(id, e)&#125;&gt;Delete Row&lt;&#x2F;button&gt;</span><br><span class="line">&lt;button onClick&#x3D;&#123;this.deleteRow.bind(this, id)&#125;&gt;Delete Row&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-条件渲染"><a href="#2-条件渲染" class="headerlink" title="2.条件渲染"></a>2.条件渲染</h3><p>创建一个 Greeting 组件，它会根据用户是否登录来显示其中之一：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Greeting(props) &#123;</span><br><span class="line">  const isLoggedIn &#x3D; props.isLoggedIn;</span><br><span class="line">  if (isLoggedIn) &#123;</span><br><span class="line">    return &lt;UserGreeting &#x2F;&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;GuestGreeting &#x2F;&gt;;</span><br><span class="line">&#125; </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &#x2F;&#x2F; 尝试修改 isLoggedIn&#x3D;&#123;true&#125;:</span><br><span class="line">  &lt;Greeting isLoggedIn&#x3D;&#123;false&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h4 id="与运算符-amp-amp"><a href="#与运算符-amp-amp" class="headerlink" title="与运算符 &amp;&amp;"></a>与运算符 &amp;&amp;</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Mailbox(props) &#123;</span><br><span class="line">  const unreadMessages &#x3D; props.unreadMessages;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Hello!&lt;&#x2F;h1&gt;</span><br><span class="line">      &#123;unreadMessages.length &gt; 0 &amp;&amp;</span><br><span class="line">        &lt;h2&gt;</span><br><span class="line">          您有 &#123;unreadMessages.length&#125; 条未读信息。</span><br><span class="line">        &lt;&#x2F;h2&gt;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const messages &#x3D; [&#39;React&#39;, &#39;Re: React&#39;, &#39;Re:Re: React&#39;];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Mailbox unreadMessages&#x3D;&#123;messages&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>在 JavaScript 中，<strong>true &amp;&amp; expression</strong> 总是返回 <strong>expression</strong>，而 <strong>false &amp;&amp; expression</strong> 总是返回 <strong>false</strong>。因此，如果条件是 <strong>true</strong>，**&amp;&amp;** 右侧的元素就会被渲染，如果是 <strong>false</strong>，React 会忽略并跳过它。</p>
-<h4 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">condition ? true : false。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  const isLoggedIn &#x3D; this.state.isLoggedIn;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;isLoggedIn ? (</span><br><span class="line">        &lt;LogoutButton onClick&#x3D;&#123;this.handleLogoutClick&#125; &#x2F;&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;LoginButton onClick&#x3D;&#123;this.handleLoginClick&#125; &#x2F;&gt;</span><br><span class="line">      )&#125; </span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="八、React-列表-amp-Keys"><a href="#八、React-列表-amp-Keys" class="headerlink" title="八、React 列表 &amp; Keys"></a>八、React 列表 &amp; Keys</h2><p>组件接收数组参数，每个列表元素分配一个 key。Keys 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function ListItem(props) &#123;</span><br><span class="line">  &#x2F;&#x2F; 对啦！这里不需要指定key:</span><br><span class="line">  return &lt;li&gt;&#123;props.value&#125;&lt;&#x2F;li&gt;;</span><br><span class="line">&#125;</span><br><span class="line">function NumberList(props) &#123;</span><br><span class="line">  const numbers &#x3D; props.numbers;</span><br><span class="line">  const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">    &#x2F;&#x2F; 又对啦！key应该在数组的上下文中被指定</span><br><span class="line">    &lt;ListItem key&#x3D;&#123;number.toString()&#125;</span><br><span class="line">              value&#x3D;&#123;number&#125; &#x2F;&gt;</span><br><span class="line">  );</span><br><span class="line">  return (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;listItems&#125;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;NumberList numbers&#x3D;&#123;numbers&#125; &#x2F;&gt;,</span><br><span class="line">  document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="九、React-组件生命周期及AJAX"><a href="#九、React-组件生命周期及AJAX" class="headerlink" title="九、React 组件生命周期及AJAX"></a>九、React 组件生命周期及AJAX</h2><h3 id="1-生命周期"><a href="#1-生命周期" class="headerlink" title="1.生命周期"></a>1.生命周期</h3><p>组件的生命周期可分成三个状态：</p>
-<ul>
-<li>Mounting：已插入真实 DOM</li>
-<li>Updating：正在被重新渲染</li>
-<li>Unmounting：已移出真实 DOM</li>
-</ul>
-<p>生命周期的方法有：</p>
-<ul>
-<li><strong>componentWillMount</strong> 在渲染前调用,在客户端也在服务端。</li>
-<li><strong>componentDidMount</strong> : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异步操作阻塞UI)。</li>
-<li><strong>componentWillReceiveProps</strong> 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</li>
-<li><strong>shouldComponentUpdate</strong> 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。<br>可以在你确认不需要更新组件时使用。</li>
-<li><strong>componentWillUpdate</strong>在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</li>
-<li><strong>componentDidUpdate</strong> 在组件完成更新后立即调用。在初始化时不会被调用。</li>
-<li><strong>componentWillUnmount</strong>在组件从 DOM 中移除之前立刻被调用。</li>
-</ul>
-<h3 id="2-AJAX"><a href="#2-AJAX" class="headerlink" title="2.AJAX"></a>2.AJAX</h3><p>React 组件的数据可以通过 componentDidMount 方法中的 Ajax 来获取，当从服务端获取数据时可以将数据存储在 state 中，再用 this.setState 方法重新渲染 UI。当使用异步加载数据时，在组件卸载前使用 componentWillUnmount 来取消未完成的请求。</p>
-]]></content>
-      <categories>
-        <category>React</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git学习记录</title>
-    <url>/2020/09/07/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-git简介"><a href="#1-git简介" class="headerlink" title="1.git简介"></a>1.git简介</h2><p>分布式版本控制系统  </p>
-<h2 id="2-在-Git环境搭建（windows）"><a href="#2-在-Git环境搭建（windows）" class="headerlink" title="2.在  Git环境搭建（windows）"></a>2.在  Git环境搭建（windows）</h2><p>安装完成后配置自己的信息</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;email@example.com &quot;</span> </span><br></pre></td></tr></table></figure>
-
-<h3 id="（1）创建版本库"><a href="#（1）创建版本库" class="headerlink" title="（1）创建版本库"></a>（1）创建版本库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ <span class="built_in">cd</span> learngit</span><br><span class="line">$ <span class="built_in">pwd</span>  </span><br></pre></td></tr></table></figure>
-
-<p>通过 git init 命令把这个目录变成 Git 可以管理的仓库：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/michael/learngit/.git/  </span><br></pre></td></tr></table></figure>
-
-<p>注意编译软件的选择</p>
-<h3 id="（2）把文件添加到版本库"><a href="#（2）把文件添加到版本库" class="headerlink" title="（2）把文件添加到版本库"></a>（2）把文件添加到版本库</h3><p>第一步，用命令 git add 告诉 Git，把文件添加到仓库：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt  </span><br></pre></td></tr></table></figure>
-
-<p>第二步，用命令 git commit 告诉 Git，把文件提交到仓库：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;wrote a readme file&quot;</span></span><br><span class="line">[master (root-commit) cb926e7] wrote a readme file</span><br><span class="line">1 file changed, 2 insertions(+)</span><br><span class="line">create mode 100644 readme.txt  </span><br></pre></td></tr></table></figure>
-
-<h2 id="3-版本控制"><a href="#3-版本控制" class="headerlink" title="3.版本控制"></a>3.版本控制</h2><h3 id="（1）仓库状态"><a href="#（1）仓库状态" class="headerlink" title="（1）仓库状态"></a>（1）仓库状态</h3><p> git status查看当前仓库里的文件状态:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">\<span class="comment"># On branch master</span></span><br><span class="line">\<span class="comment"># Changes not staged for commit:</span></span><br><span class="line">\<span class="comment"># (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span></span><br><span class="line">\<span class="comment"># (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span></span><br><span class="line">\<span class="comment">#</span></span><br><span class="line">\<span class="comment"># modified: readme.txt</span></span><br><span class="line">\<span class="comment">#</span></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)  </span><br></pre></td></tr></table></figure>
-
-<p>查看修改了哪些内容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff 文件名</span><br></pre></td></tr></table></figure>
-
-<p>查看git日志</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span>  </span><br></pre></td></tr></table></figure>
-
-<h3 id="（2）版本回退"><a href="#（2）版本回退" class="headerlink" title="（2）版本回退"></a>（2）版本回退</h3><p>在 Git 中，用 HEAD 表示当前版本，也就是最新的提交 3628164…882e1e0 （注意我的提交 ID 和你的肯定不一样），上一个版本就是 HEAD^ ，上上一个版本就是 HEAD^^ ，当然往上 100 个版本写 100 个 ^ 比较容易数不过来，所以写成 HEAD~100 。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at ea34578 add distributed  </span><br></pre></td></tr></table></figure>
-
-<p>Git 提供了一个命令 git reflog 用来记录你的每一次命令：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">ea34578 HEAD@&#123;0&#125;: reset: moving to HEAD^</span><br><span class="line">3628164 HEAD@&#123;1&#125;: commit: append GPL</span><br><span class="line">ea34578 HEAD@&#123;2&#125;: commit: add distributed</span><br><span class="line">cb926e7 HEAD@&#123;3&#125;: commit (initial): wrote a readme file  </span><br></pre></td></tr></table></figure>
-
-<h3 id="（3）工作区和暂存区"><a href="#（3）工作区和暂存区" class="headerlink" title="（3）工作区和暂存区"></a>（3）工作区和暂存区</h3><p>我们把文件往 Git 版本库里添加的时候，是分两步执行的：  </p>
-<p>第一步是用 git add 把文件添加进去，实际上就是把文件修改添加到暂存区；<br>第二步是用 git commit 提交更改，实际上就是把暂存区的所有内容提交到当前分支。  </p>
-<p><img src= "/img/loading.gif" data-lazy-src="/img/article/git_workspace_image.png" alt="avatar"></p>
-<p>git checkout – file 可以丢弃工作区的修改：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -- readme.txt  </span><br></pre></td></tr></table></figure>
-
-<p>git checkout – file 命令中的–很重要，没有–，就变成了“创建一个新分支”的命令 。 </p>
-<p>git reset HEAD file 可以把暂存区的修改撤销掉（unstage），重新放回工作区：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset HEAD readme.txt  </span><br></pre></td></tr></table></figure>
-
-<h3 id="（4）删除文件"><a href="#（4）删除文件" class="headerlink" title="（4）删除文件"></a>（4）删除文件</h3><p>确实要从版本库中删除该文件，那就用命令 git rm 删掉，并且 git commit ：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rm test.txt</span><br><span class="line">rm <span class="string">&#x27;test.txt&#x27;</span></span><br><span class="line">$ git commit -m <span class="string">&quot;remove test.txt&quot;</span></span><br><span class="line">[master d17efd8] remove test.txt</span><br><span class="line">1 file changed, 1 deletion(-)</span><br><span class="line">delete mode 100644 test.txt  </span><br></pre></td></tr></table></figure>
-
-<p>如果删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本 ：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -- test.txt  </span><br></pre></td></tr></table></figure>
-
-<h2 id="4-分支管理"><a href="#4-分支管理" class="headerlink" title="4.分支管理"></a>4.分支管理</h2><h3 id="（1）创建与合并分支"><a href="#（1）创建与合并分支" class="headerlink" title="（1）创建与合并分支"></a>（1）创建与合并分支</h3><p>创建 dev 分支，然后切换到 dev 分支：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -b dev</span><br><span class="line">Switched to a new branch <span class="string">&#x27;dev&#x27;</span>  </span><br></pre></td></tr></table></figure>
-
-<p>git checkout 命令加上 -b 参数表示创建并切换，相当于以下两条命令：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch dev</span><br><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span>  </span><br></pre></td></tr></table></figure>
-
-<p>然后，用 git branch 命令查看当前分支： </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> $ git branch</span><br><span class="line">\* dev</span><br><span class="line">master  </span><br></pre></td></tr></table></figure>
-
-<p>把 dev 分支的工作成果合并到 master 分支上：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge dev</span><br><span class="line">Updating d17efd8..fec145a</span><br><span class="line">Fast-forward</span><br><span class="line">readme.txt | 1 +</span><br><span class="line">1 file changed, 1 insertion(+)  </span><br></pre></td></tr></table></figure>
-
-<p>合并完成后，就可以放心地删除 dev 分支了：  </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch -d dev</span><br><span class="line">Deleted branch dev (was fec145a).  </span><br></pre></td></tr></table></figure>
-
-<h3 id="（2）小结"><a href="#（2）小结" class="headerlink" title="（2）小结"></a>（2）小结</h3><div class="note primary no-icon">
-            <p>Git 鼓励大量使用分支：<br>查看分支：git branch<br>创建分支：git branch 分支名<br>切换分支：git checkout 分支名<br>创建+切换分支：git checkout -b<br>合并某分支到当前分支：git merge<br>删除分支：git branch -d<br>当 Git 无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。用 git log –graph 命令可以看到分支合并图。  </p>
-          </div>]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringIoc容器设计及实现</title>
-    <url>/2020/08/31/SpringIoc%E5%AE%B9%E5%99%A8%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="note primary no-icon">
-            <p>spring 的核心理念是Ioc(控制反转)和AOP(面向切面编程)</p>
-          </div>
-
-<h3 id="一、springIoc容器的设计"><a href="#一、springIoc容器的设计" class="headerlink" title="一、springIoc容器的设计"></a>一、springIoc容器的设计</h3><h4 id="1-容器的设计"><a href="#1-容器的设计" class="headerlink" title="1.容器的设计"></a>1.容器的设计</h4><div class="note primary no-icon">
-            <p>（1）BeanFactory<br>​（2）ApplicationContext(BeanFactory的子接口)</p>
-          </div>
-
-<p>​    </p>
-<h4 id="2-容器的初始化和依赖注入"><a href="#2-容器的初始化和依赖注入" class="headerlink" title="2.容器的初始化和依赖注入"></a>2.容器的初始化和依赖注入</h4><p>Bean定义到IoC容器中3种方式</p>
-<div class="note primary no-icon">
-            <p>​    （1）Resourse定位    资源定位，常使用注解方式<br>​    （2）BeanDefinition载入<br>​    （3）BeanDefinition注册</p>
-          </div>
-
-<h4 id="3-SpringBean的周期"><a href="#3-SpringBean的周期" class="headerlink" title="3.SpringBean的周期"></a>3.SpringBean的周期</h4><p>从容器初始化到销毁的过程</p>
-<h3 id="二、装配SpringBean"><a href="#二、装配SpringBean" class="headerlink" title="二、装配SpringBean"></a>二、装配SpringBean</h3><h4 id="1-3种装备方式"><a href="#1-3种装备方式" class="headerlink" title="1.    3种装备方式"></a>1.    3种装备方式</h4><div class="note primary no-icon">
-            <p>​    （1）构造器注入<br>​    （2）setter注入（主流方式）<br>​    （3）接口注入</p>
-          </div>
-
-
-
-
-
-<p>​    </p>
-]]></content>
-      <categories>
-        <category>spring</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>spring</tag>
-        <tag>SpringIoc</tag>
       </tags>
   </entry>
 </search>
